@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let money=parseInt(prompt('Nhập số tiền gửi:'));
+    let lai=parseInt(prompt('Nhập lãi suất: ? %/năm'));
+    let time=parseInt(prompt('Nhập số tháng gửi:'));
+    let result=(money*(lai/100/12))*time+money;
+
+    let i=2
+    if (i<=time){
+        result=(result*(lai/100/12))*time;
+        i=i+1;
+    }
+    alert('Số tiền lãi bạn nhận được là: '+result);
+</script>
+</body>
+</html>

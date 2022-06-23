@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    n = 5
+    // 1
+    // *    
+    // **   
+    // ***  
+    // **** 
+    // *****
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (i >= j)
+                document.write('*')
+            else {
+                document.write('&ensp;')
+            }
+        }
+        document.write('<br>')
+    }
+    // 2
+    // *****
+    //  ****
+    //   ***
+    //    **
+    //     *
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (i > j)
+                document.write('&ensp;')
+            else {
+                document.write('*')
+            }
+        }
+        document.write('<br>')
+    }
+    // 3
+    // *****
+    // **** 
+    // ***  
+    // **   
+    // *    
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = n; j > 0; j--) {
+            if (i >= j)
+                document.write('&ensp;')
+            else {
+                document.write('*')
+            }
+        }
+        document.write('<br>')
+    }
+    // 4
+    //     *
+    //    **
+    //   ***
+    //  ****
+    // *****
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = n; j > 0; j--) {
+            if (i >= j - 1)
+                document.write('*')
+            else {
+                document.write('&ensp;')
+            }
+        }
+        document.write('<br>')
+    }
+    // 5
+    // *****
+    // *****
+    // *****
+    // *****
+    // *****
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            document.write('*')
+        }
+        document.write('<br>')
+    }
+    // 6
+    // *****
+    // *   *
+    // *   *
+    // *   *
+    // *****
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (i == 0 || i == n - 1 || j == 0 || j == n - 1)
+                document.write('*')
+            else
+                document.write('&ensp;')
+        }
+        document.write('<br>')
+    }
+    // 7
+    // *    
+    // **   
+    // * *  
+    // *  * 
+    // *****
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (j == 0 || j == i || i == n - 1)
+                document.write('*')
+            else {
+                document.write('&ensp;')
+            }
+        }
+        document.write('<br>')
+    }
+    // 8
+    // *****
+    //  *  *
+    //   * *
+    //    **
+    //     *
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n; j++) {
+            if (i == 0 || j == n - 1 || i == j)
+                document.write('*')
+            else {
+                document.write('&ensp;')
+            }
+        }
+        document.write('<br>')
+    }
+    // 9
+    // *****
+    // *  * 
+    // * *  
+    // **   
+    // *    
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = n; j > 0; j--) {
+            if (i == 0 || j == n || j == i + 1)
+                document.write('*')
+            else {
+                document.write('&ensp;')
+            }
+        }
+        document.write('<br>')
+    }
+    // 10
+    //     *
+    //    **
+    //   * *
+    //  *  *
+    // *****
+    document.write('<br>')
+    for (i = 0; i < n; i++) {
+        for (j = n; j > 0; j--) {
+            if (i == n - 1 || j == 1 || i == j - 1)
+                document.write('*')
+            else {
+                document.write('&ensp;')
+            }
+        }
+        document.write('<br>')
+    }
+    // 11
+    //     *    
+    //    ***   
+    //   *****  
+    //  ******* 
+    // *********
+    document.write('<br>')
+    let h = n - 1
+    let h2 = n - 1
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n * 2 - 1; j++) {
+            if (j < h || j > h2)
+                document.write('&ensp;')
+            else
+                document.write('*')
+        }
+        document.write('<br>')
+        h--
+        h2++
+    }
+    // 12
+    //     *    
+    //    * *   
+    //   *   *  
+    //  *     * 
+    // *********
+    document.write('<br>')
+    let h3 = n - 1
+    let h4 = n - 1
+    for (i = 0; i < n; i++) {
+        for (j = 0; j < n * 2 - 1; j++) {
+            if (j == h3 || j == h4 || i == n - 1)
+                document.write('*')
+            else
+                document.write('&ensp;')
+        }
+        document.write('<br>')
+        h3--
+        h4++
+    }
+</script>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let arrA = Array(5)
+    let arrB = Array(5)
+    let arrC = Array(10)
+    let i = 0
+    while (i < 5) {
+        arrA[i] = parseInt(prompt('nhap pt mang A thu ' + (i + 1) + ': '))
+        // arrB[i] = parseInt(prompt('nhap pt mang B thu ' + (i + 1) + ': '))
+        i++
+    }
+    let u = 0
+    while (u < 5) {
+        // arrA[i] = parseInt(prompt('nhap pt mang A thu ' + (i + 1) + ': '))
+        arrB[u] = parseInt(prompt('nhap pt mang B thu ' + (u + 1) + ': '))
+        u++
+    }
+    arrC = arrA.concat(arrB)
+    alert('Mang C = (A + B) : ' + arrC)
+</script>

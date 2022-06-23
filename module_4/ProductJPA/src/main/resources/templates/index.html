@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="mine/css/me.css">
+    <script src="mine/js/me.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1><a id="appName" href="/">product management</a></h1>
+        <h5><a id="lOut" href="/logout">log-out</a></h5>
+    </div>
+    <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+        <div class="toast-body d-flex justify-content-center" id="toastId">toast</div>
+    </div>
+    <div class="topBar d-flex justify-content-between">
+        <div>
+            <button type="button"
+                    data-toggle="modal"
+                    data-target="#modalSave"
+                    class="add"
+            >add new one
+            </button>
+        </div>
+        <div>
+            <form action="/search">
+                <button type="button" class="deleteSelectedOnes">delete selected ones</button>
+                <button type="button"
+                        class="dropdown-toggle"
+                        data-toggle="dropdown"
+                        th:text="${by==''?'whole':by}">
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item noChoice" th:text="${'whole'}"></a></li>
+                    <li><a class="dropdown-item noChoice" th:text="${'name'}"></a></li>
+                    <li><a class="dropdown-item noChoice" th:text="${'price'}"></a></li>
+                    <li>
+                        <a class="dropdown-item">category &#187;</a>
+                        <ul class="dropdown-menu dropdown-submenu">
+                            <li class="dropdown-item hasChoice" th:each="c:${categoryList}">
+                                <a class="cName" th:text="${c.name}"> </a>
+                                <a class="cId" style="display: none" th:text="${c.id}"></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <input name="by" id="by" th:value="${by}" type="hidden">
+                <label><input id="searchBox" name="value"
+                              placeholder="Search here"
+                              th:value="${value}"></label>
+                <button id="searchBtn" type="submit">search</button>
+                <input name="value" id="cate_value" type="hidden" th:value="${value}">
+            </form>
+        </div>
+    </div>
+    <div class="tableOfContents">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr class="bg-light text-dark">
+                <th>no</th>
+                <th>
+                    <label class="mb-0">
+                        <input type="checkbox" id="selectAll">
+                    </label>
+                </th>
+                <th class="sortName">
+                    <div class="d-flex justify-content-between">
+                        name
+                        <i th:if="${ascOrDesc == 'desc'}" style="display: none"
+                           class="fa-solid fa-arrow-down-long mt-1 iName">
+                        </i>
+                        <i th:if="${ascOrDesc =='asc'}" style="display: none"
+                           class="fa-solid fa-arrow-up-long mt-1 iName">
+                        </i>
+                        <i class="fa-solid fa-sort mt-1 hName"></i>
+                    </div>
+                </th>
+                <th class="sortPrice">
+                    <div class="d-flex justify-content-between">
+                        price
+                        <i th:if="${ascOrDesc == 'desc'}" style="display: none"
+                           class="fa-solid fa-arrow-down-long mt-1 iPrice">
+                        </i>
+                        <i th:if="${ascOrDesc =='asc'}" style="display: none"
+                           class="fa-solid fa-arrow-up-long mt-1 iPrice">
+                        </i>
+                        <i class="fa-solid fa-sort mt-1 hPrice"></i>
+                    </div>
+                </th>
+                <th class="sortExpiration">
+                    <div class="d-flex justify-content-between">
+                        expiration
+                        <i th:if="${ascOrDesc == 'desc'}" style="display: none"
+                           class="fa-solid fa-arrow-down-long mt-1 iExpiration">
+                        </i>
+                        <i th:if="${ascOrDesc =='asc'}" style="display: none"
+                           class="fa-solid fa-arrow-up-long mt-1 iExpiration">
+                        </i>
+                        <i class="fa-solid fa-sort mt-1 hExpiration"></i>
+                    </div>
+                </th>
+                <th>category</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p,status:${productList}">
+                <td th:text="${status.count}"></td>
+                <td>
+                    <label class="mb-0 lbCheckbox">
+                        <input type="checkbox" class="selectOne" th:value="${p.id}">
+                        <input type="checkbox" class="selectOneName" th:value="${p.name}" style="display: none">
+                    </label>
+                </td>
+                <td th:text="${p.name}"></td>
+                <td th:text="${p.price}"></td>
+                <td th:text="${p.expiration}"></td>
+                <td th:text="${p.category.name}"></td>
+                <td>
+                    <button type="button"
+                            data-target="#modalSave"
+                            data-toggle="modal"
+                            class="edit"
+                            th:data-id="${p.id}"
+                            th:data-name="${p.name}"
+                            th:data-price="${p.price}"
+                            th:data-expiration="${p.expiration}"
+                            th:data-category="${p.category.id}"
+                    >edit
+                    </button>
+                    <button type="button"
+                            class="delete"
+                            th:data-id="${p.id}"
+                            th:data-name="${p.name}"
+                            data-toggle="modal"
+                            data-target="#modalDelete"
+                    >delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="paginate d-flex justify-content-between">
+        <input id="currentPageId" type="hidden" th:value="${currentPage}">
+        <input id="totalPagesId" type="hidden" th:value="${productList.totalPages}">
+        <input id="value" type="hidden" th:value="${value}">
+        <div>
+            <span style="text-transform: none" th:if="${productList.getTotalElements() > 0}">
+                Showing <span th:text="${(currentPage + 1) * 5 - 4}"></span> to
+                <span th:if="${(currentPage + 1) * 5 <= productList.getTotalElements()}"
+                      th:text="${(currentPage + 1) * 5}"></span>
+                <span th:if="${(currentPage + 1) * 5 > productList.getTotalElements()}"
+                      th:text="${productList.getTotalElements()}"></span> of
+                <span th:text="${productList.getTotalElements()}"></span> entries
+            </span>
+        </div>
+        <nav aria-label="pagination">
+            <ul class="pagination">
+
+                <li class="page-item" id="previous">
+                    <a class="page-link"
+                       th:href="@{'search'(page = ${productList.number - 1}, by = ${by}, value = ${value})}">Previous
+                    </a>
+                    <script th:inline="javascript" th:if="${!productList.hasPrevious()}">
+                        $('#previous').addClass('disabled')
+                    </script>
+                </li>
+
+
+                <li class="page-item disabled" id="hPrevious" style="display: none">
+                    <a class="page-link">previous</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFivePrevious">
+                    <a class="page-link">previous</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFive1">
+                    <a class="page-link">1</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFive2">
+                    <a class="page-link">2</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFive3">
+                    <a class="page-link">3</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFive4">
+                    <a class="page-link">4</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFive5">
+                    <a class="page-link">5</a>
+                </li>
+                <li class="page-item overFiveAll" id="overFiveNext">
+                    <a class="page-link">next</a>
+                </li>
+                <li class="page-item disabled" id="hNext" style="display: none">
+                    <a class="page-link">next</a>
+                </li>
+
+
+                <li class="page-item pageLoop" th:each="one:${arrayPages}">
+                    <a class="page-link" th:text="${one}"
+                       th:href="@{'search'(page = ${one - 1}, by = ${by}, value = ${value})}">
+                    </a>
+                </li>
+
+                <li class="page-item" id="next">
+                    <a class="page-link"
+                       th:href="@{'search'(page = ${productList.number + 1}, by = ${by}, value = ${value})}">Next
+                    </a>
+                    <script th:inline="javascript" th:if="${!productList.hasNext()}">
+                        $('#next').addClass('disabled')
+                    </script>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+    <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">are you sure to delete?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form action="/delete" method="post">
+                    <div class="modal-body">
+                        <input id="id_delete" name="id" type="hidden">
+                        <input id="currentUrl" name="currentUrl" type="hidden">
+                        <h4 class="nameDel"></h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal">close</button>
+                        <button type="submit">save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">save information</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="saveFormId" action="/save" method="post" th:object="${product}">
+                        <script th:inline="javascript"
+                                th:if="${#fields.hasAnyErrors()}">
+                            $('#modalSave').modal('show')
+                        </script>
+                        <input type="hidden" th:field="*{id}">
+                        <table>
+                            <tr>
+                                <th>name</th>
+                                <td>
+                                    <label> <input th:field="*{name}"> </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <label style="font-style: italic;color: red" id="lbErrorName"
+                                           th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>price</th>
+                                <td>
+                                    <label><input name="price"> </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <label style="font-style: italic;color: red" id="lbErrorPrice"
+                                           th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>expiration</th>
+                                <td>
+                                    <label><input type="date" th:field="*{expiration}"> </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <td>
+                                    <label style="font-style: italic;color: red" id="lbErrorExpiration"
+                                           th:if="${#fields.hasErrors('expiration')}"
+                                           th:errors="*{expiration}">
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>category</th>
+                                <td>
+                                    <label>
+                                        <select th:field="*{category}">
+                                            <option th:each="c:${categoryList}"
+                                                    th:text="${c.name}"
+                                                    th:value="${c.id}">
+                                            </option>
+                                        </select>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="modal-footer">
+                            <button type="button" data-dismiss="modal">close</button>
+                            <button type="submit" id="saveBtn">save changes</button>
+                            <input id="currentUrl2" name="currentUrl" type="hidden">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <form id="formSendData">
+        <input type="hidden" id="curPag1" name="page">
+        <input type="hidden" id="hide" name="h" th:value="${h}">
+        <input type="hidden" name="by" th:value="${by}">
+        <input type="hidden" id="value2" name="value" th:value="${value}">
+        <input type="hidden" id="arrPaId" name="tempArrayPages" th:value="${tempArrayPages}">
+        <input type="hidden" id="sortBy2" name="sortBy">
+        <input type="hidden" id="ascOrDesc2" name="ascOrDesc">
+    </form>
+    <form id="sortForm">
+        <input type="hidden" id="sortBy" name="sortBy" th:value="${sortBy}">
+        <input type="hidden" id="ascOrDesc" name="ascOrDesc" th:value="${ascOrDesc}">
+    </form>
+    <input id="p1" type="hidden" th:value="${tempArrayPages[0]}">
+    <input id="p2" type="hidden" th:value="${tempArrayPages[1]}">
+    <input id="p3" type="hidden" th:value="${tempArrayPages[2]}">
+    <input id="p4" type="hidden" th:value="${tempArrayPages[3]}">
+    <input id="p5" type="hidden" th:value="${tempArrayPages[4]}">
+    <input id="toastMessage" type="hidden" th:value="${toastMessage}">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+</body>
+</html>

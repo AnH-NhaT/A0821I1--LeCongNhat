@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    n = parseInt(prompt('nhap tien luong cua chu = __ trieu'))
+    if (n == 15) {
+        document.write('thue thu nhap la 20% luong = ' + (n / 5) + ' trieu' + '<br>')
+        document.write('<br>' + 'luong con lai = ' + (n - (n / 5) + ' trieu'))
+    }
+    else if (n < 15 && n >= 7) {
+        document.write('thue thu nhap la 10% luong = ' + (n / 10) + ' trieu' + '<br>')
+        document.write('<br>' + 'luong con lai = ' + (n - (n / 10) + ' trieu'))
+    }
+    else if (n < 7) {
+        document.write('thue thu nhap la 5% luong = ' + (n / 20) + ' trieu' + '<br>')
+        document.write('<br>' + 'luong con lai = ' + (n - (n / 20) + ' trieu'))
+    } else {
+        document.write('this wage amount is not setup!')
+    }
+</script>

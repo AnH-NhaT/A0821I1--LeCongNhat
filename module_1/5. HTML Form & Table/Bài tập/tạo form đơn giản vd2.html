@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        div{
+            margin: auto;
+        }
+        .main{
+            background-color: rgb(252, 250, 164);
+            /* border: 1px solid green; */
+            height: 450px;
+            width: 650px;
+            display: flex;            
+        }
+        .form{
+            margin: auto;
+            /* border: 1px solid rgb(230, 134, 10); */
+            height: 450px;
+            width: 650px;
+        }
+        .tieude{
+            background-color: rgb(6, 201, 207);
+            color: blue;
+            margin: 10px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        span{display: inline-block;
+            width: 150px;
+            margin-left: 10px;
+        }
+        .signup{
+            position: relative;
+            left: 165px;
+            top: 20px;
+        }
+        .reset{
+            position: relative;
+            left: 170px;
+            top: 20px;
+        }
+        .name{
+            width: 250px;
+            line-height: 30px;
+            margin: 5px 0px 5px;
+        }
+        .birth{
+            width: 200px;
+            line-height: 30px;
+            margin: 5px 0px 10px;
+        }
+        .address{
+            width: 250px;height: 60px;
+            margin: 10px 0px 5px;
+        }
+        #class{
+            width: 250px;
+            line-height: 30px;
+            margin: 5px 0px 5px;
+        }
+        .email{
+            width: 250px;
+            line-height: 30px;
+            margin: 5px 0px 5px;   
+        }
+        .number{
+            width: 250px;
+            line-height: 30px;
+            margin: 5px 0px 0px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <form action="" class="form">
+            <h1 class="tieude">
+                ĐĂNG KÝ HỌC VIÊN
+            </h1>
+            <span>
+                Fullname
+            </span>
+            <input type="text"name="name"value=""class="name"><br>
+            <span>
+                Date of birth
+            </span>
+            <input type="text"name="birth"value=""class="birth"><br>
+            <span>
+                Gender
+            </span>
+            <input type="radio"name="Gender"value=""class="male"> Nam
+            <input type="radio"name="Gender"value=""class="Female"> Nữ<br>
+            <span>
+                Address
+            </span>
+            <input type="text"name="Address"value=""class="address"><br>
+            <span>
+                Class
+            </span>
+            <select id="class">
+                <option value="#">-- choose class --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select><br>
+        <span>
+            Email
+        </span>
+        <input type="text"name="Email"value=""class="email"><br>
+        <span>
+            Phone number
+        </span>
+        <input type="number"name="Number"value=""class="number"><br>
+        <input type="button"name="Submit"value="Sign up"class="signup">
+        <input type="reset"name="Reset"value="Reset"class="reset">
+        </form>
+    </div>
+<!-- ===================================================== -->
+
+
+</body>
+</html>

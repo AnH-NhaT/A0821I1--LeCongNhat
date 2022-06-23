@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    let count = 1
+    let m = parseInt(prompt('nhap so hang'))
+    let n = parseInt(prompt('nhap so cot'))
+    let arr2d = new Array(m)
+    arr_prime = []
+
+    let table = '<table  style="text-align: center;" border=1 cellpadding = 5>'
+    for (let row = 0; row < m; row++) {
+        arr2d[row] = new Array(n)
+        table += '<tr>'
+        for (let col = 0; col < n; col++) {
+            arr2d[row][col] = count
+            table += '<td>'
+            table += arr2d[row][col]
+            if (prime_number(arr2d[row][col]) == true) {
+                arr_prime.push(arr2d[row][col])
+            }
+            table += '</td>'
+            count++
+        } table += '<tr>'
+    } table += '</table>'
+    document.write(table)
+    document.write('<br>list primeNumber: ' + arr_prime)
+    document.write('<br>' + arr_prime.length + ' primeNumber.')
+
+
+    function prime_number(snt) {
+        let check = false
+        if (snt < 2)
+            return false
+        for (let i = 2; i < snt; i++) {
+            if (snt % i == 0) {
+                check = true
+            }
+        } if (check == false) {
+            return true
+        }
+    }
+</script>

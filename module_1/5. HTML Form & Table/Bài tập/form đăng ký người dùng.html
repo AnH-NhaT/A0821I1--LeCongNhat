@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        input[type="radio"] {
+            display: inline-block;
+            background-color: aqua;
+            color: aqua;
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="http://demo.codegym.vn/6/registration_form/register.php" method="GET">
+        Fullname
+        <br>
+        <input type="text" name="name" value="">
+        <br><br>
+        Email
+        <br>
+        <input type="text" name="email" value="">
+        <br><br>
+        Phone number
+        <br>
+        <input type="number" name="number" value="">
+        <br><br>
+        Gender
+        <br>
+        <input type="radio" name="Gender" value="Male">Male
+        <input type="radio" name="Gender" value="FeMale">FeMale
+        <br><br>
+        <input type="submit" name="signup" value="signup">
+    </form>
+</body>
+
+</html>

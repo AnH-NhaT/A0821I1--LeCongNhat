@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #header {
+        border: 1px solid coral;
+        background-color: rgb(58, 56, 56);
+        height: 60px;
+    }
+
+    #header ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+    #header li {
+        float: left;
+    }
+
+    #header li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 20px 16px;
+        text-decoration: none;
+    }
+
+    #header li a:hover {
+        background-color: #111;
+    }
+
+    .active {
+        background-color: black;
+    }
+
+    #left {
+        background-color: gainsboro;
+        float: left;
+        height: 500px;
+        width: 15%;
+    }
+
+    #center {
+        background-color: white;
+        float: left;
+        height: 500px;
+        width: 70%;
+    }
+
+    #right {
+        background-color: gainsboro;
+        float: left;
+        height: 500px;
+        width: 15%;
+    }
+
+    #footer {
+        background-color: gray;
+        float: left;
+        height: 100px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #left a {
+        display: block;
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+
+<body>
+    <div id="header">
+        <ul>
+            <li><a href="">Logo</a></li>
+            <li><a class="active" href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Projects</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+    <div id="left">
+        <a href="#">link</a>
+        <a href="#">link</a>
+        <a href="#">link</a>
+    </div>
+    <div id="center">
+        <h1 style="margin: 10px;">Welcome</h1>
+        <p style="margin: 10px;">
+            multilingual online encyclopedia written and maintained by a community of volunteers through a model of open
+            collaboration, using a wiki-based editing system. Individual contributors, also called editors, are known as
+            Wikipedians. It is the largest and most-read reference work in history,[3] and consistently one of the 15
+            most popular websites ranked by Alexa; as of 2021, Wikipedia was ranked the 13th most popular site.[3][4] It
+            is hosted by the Wikimedia Foundation, an American non-profit organization funded mainly through small
+            donations.
+        </p>
+        <hr style="margin: 10px;">
+        <h1 style="margin: 10px;">Test</h1>
+        <p style="margin: 10px;">
+            multilingual online...
+        </p>
+    </div>
+    <div id="right">
+
+    </div>
+    <div id="footer">
+        <p style="color: white;">Footer text</p>
+    </div>
+</body>
+
+</html>

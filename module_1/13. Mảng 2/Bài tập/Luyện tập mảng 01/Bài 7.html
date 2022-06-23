@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    mang = []
+    let i = 0
+    while (i < 10) {
+        mang[i] = parseInt(prompt('nhap phan tu thu ' + (i + 1)))
+        i++
+    }
+    document.write(mang + '<br>')
+    let v = parseInt(prompt('nhap so V= '))
+    document.write('V = ' + v + '<br>')
+    if (mang.includes(v)) {
+        mang.splice(mang.indexOf(v), 1)
+        mang.push(0)
+        document.write('sau khi xoa V khoi mang' + '<br>')
+        document.write(mang)
+    } else
+        document.write('V co trong mang mo ma xoa')
+</script>

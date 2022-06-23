@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // let arrA = []
+    // let arrB = []
+    // let arrC = []
+    // let i = 0
+    // while (i < 5) {
+    //     arrA[i] = parseInt(prompt('nhap pt mang A thu ' + (i + 1) + ': '))
+    //     // arrB[i] = parseInt(prompt('nhap pt mang B thu ' + (i + 1) + ': '))
+    //     i++
+    // }
+    // let AA = arrA
+    // let u = 0
+    // while (u < 5) {
+    //     // arrA[i] = parseInt(prompt('nhap pt mang A thu ' + (i + 1) + ': '))
+    //     arrB[u] = parseInt(prompt('nhap pt mang B thu ' + (u + 1) + ': '))
+    //     u++
+    // }
+    // let BB = arrB
+    // for (a = 0; a < 5; a++) {
+    //     for (b = 0; b < 5; b++) {
+    //         if (arrA[a] === arrB[b]) {
+    //             arrC.push(arrA[a])
+    //         }
+    //     }
+    // } arrC = Array.from(new Set(arrC))  /* xoá phần tử trùng lặp của mảng */
+    // document.write(AA + '<br>')
+    // document.write(BB + '<br>')
+    // document.write('cac so trung nhau trong mang A va B [' + arrC + ']')
+
+
+
+    /* ======================== hàm tự viết SetArray*/
+
+    let a = [1, 2, 3, 4]
+    let b = [1, 2, 3, 4, 5, 5, 6, 7, 7, 9]
+    let c = []
+
+    for (let i = 0; i < b.length; i++) {
+        if (a.includes(b[i]) == false) {
+            c.push(b[i])
+        }
+    }
+    
+    console.log(c);
+
+    function xuat_hien_mot_lan_in_array(c) {
+        let d = []
+        let ngu = undefined /* importain */
+        for (let i = 0; i < c.length; i++) {
+            for (let j = 0; j < c.length; j++) {
+                if (c[i] === c[j]) {
+                    ngu = c[j] // must assign by this
+                    d.push(ngu)
+                    for (let g = 0; g < c.length; g++) {
+                        if (c[g] === ngu) {
+                            c.splice(g, 1)
+                            g--
+                            // j-- (i or j)
+                            i--
+                        }
+                    }
+                }
+            }
+        }
+        return d
+    }
+
+    console.log(xuat_hien_mot_lan_in_array(c));
+</script>

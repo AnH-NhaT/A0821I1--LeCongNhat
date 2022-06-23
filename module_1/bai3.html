@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    let arr_phu = [6, 1, 8, 9]
+    let res = []
+    let assign = arr_snt(arr_phu)
+    alert(assign)
+
+    function arr_snt(arr) {
+        function check_snt(n) {
+            if (n <= 2) {
+                return false
+                // alert('ko phai')
+            } else {
+                let check = true
+                for (let i = 2; i < n; i++) {
+                    if (n % i == 0) {
+                        check = false
+                        break
+                    }
+                } if (check == false) {
+                    return false
+                    // alert('ko phai')
+                } else {
+                    return true
+                    // alert('phai')
+                }
+            }
+        }
+        for (let j = 0; j < arr.length; j++) {
+            if (check_snt(arr[j]) == true) {
+                res.push(arr[j])
+            }
+        }
+        let fun = null
+        for (let k = 0; k < res.length; k++) {
+            for (let u = 0; u < res.length; u++) {
+                if (res[k] < res[u]) {
+                    fun = res[k]
+                    res[k] = res[u]
+                    res[u] = fun
+                }
+            }
+        }
+        return res
+    }
+
+</script>

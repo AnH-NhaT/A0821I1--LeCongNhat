@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script>
+
+        class Mobile {
+            constructor() {
+                this.pin = 100;
+                this.receivedMessage = [];
+                this.sentMessage = [];
+                this.status = true;
+                this.message = [];
+            }
+
+            getStatus() {
+                return this.status;
+            }
+
+            setStatus() {
+                if (this.status) {
+                    let check = confirm("Bạn có muốn tắt điện thoại không!");
+                    if (check) {
+                        alert("Đã tắt điện thoại!");
+                        this.status = false;
+                    }
+                } else {
+                    alert("Đã bặt điện thoại!");
+                    this.status = true;
+                }
+            }
+
+            sendMessage(sentMessage, iphone) {
+                if (this.status) {
+                    this.sentMessage.push(sentMessage);
+                    iphone.receiveMessage(sentMessage);
+                    this.pin--;
+                }
+            }
+
+
+            receiveMessage(receivedMessage) {
+                if (this.status) {
+                    this.receivedMessage.push(receivedMessage);
+                    this.pin--;
+                }
+            }
+
+            checkPin() {
+                if (this.pin === 0) {
+                    alert("Sạc!")
+                } else {
+                    document.write('<br>'+this.pin)
+                }
+
+            }
+
+            addMessage(message) {
+                this.message.push(message)
+            }
+
+            addPin() {
+                if (this.pin < 100) {
+                    this.pin++
+                } else {
+                    document.write('<br>'+'Pin đầy')
+                }
+            }
+        }
+        let iphone = new Mobile();
+        let nokia = new Mobile();
+        nokia.addMessage('welcome')
+        nokia.sendMessage(nokia.message, iphone);
+        document.write('<br>'+"Đã gửi: " + nokia.sentMessage);
+        document.write('<br>'+"Đã nhận: " + iphone.receivedMessage);
+        document.write('<br>'+"Pin còn lại: " + iphone.pin+' %');
+        nokia.addPin();
+        document.write('<br>'+nokia.pin)
+
+    </script>
+</body>
+
+</html>

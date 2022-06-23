@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let ngu = prompt('input a string')
+    dem(ngu)
+
+    function dem(str) {
+        str = str.split('')
+        count = 0
+        let check = true
+        for (let i = 0; i < str.length; i++) {
+            if (str[i] == str[i].toLocaleUpperCase()) {
+                count++
+                check = false
+            }
+        }
+        if (check) {
+            alert('The Strings is not contain upper char')
+        } else {
+            alert(count + ' upper chars')
+        }
+    }
+</script>

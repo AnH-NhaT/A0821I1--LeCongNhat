@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let str = [9, 8, 10]
+    let temp
+    let count = 0
+    for (let i = 0; i < str.length; i++) {
+        for (let j = 0; j < str.length; j++) {
+            if (str[i] < str[j]) {
+
+                temp = str[j]  /* Swap position*/
+
+                str[j] = str[i]  /* swap */
+
+                str[i] = temp  /* Swap */
+            }
+            count++
+            if (count == 8) {
+                document.write(str)
+                break
+            }
+        }
+    }
+
+</script>

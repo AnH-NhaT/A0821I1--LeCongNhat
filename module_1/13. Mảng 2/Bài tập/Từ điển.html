@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let n = prompt('chon mot tu trong so: hello, you, me, love, kiss')
+    let anh = ['hello', 'you', 'me', 'love', 'kiss']
+    let viet = ['xin chào', 'bạn', 'tôi', 'yêu', 'hôn']
+    let resu
+    let alo
+    for (i = 0; i < anh.length; i++) {
+        if (n == anh[i]) {
+            alo = i
+            break
+        }
+    }
+    if (alo != i)
+        alert('chua co trong tu dien')
+    else
+        alert('nghĩa của nó là: ' + viet[alo])
+
+</script>

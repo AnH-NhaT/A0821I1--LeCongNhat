@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    mang = []
+    let i = 0
+    let count = 0
+    while (i < 4) {
+        max = mang[0]
+        mang[i] = parseInt(prompt('nhap phan tu thu ' + (i + 1)))
+        if (mang[i] < 0)
+            count++
+        i++
+    }
+    document.write(mang + '<br>')
+    document.write('co ' + count + ' so nguyen am')
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    function check_snt(n) {
+        let kt
+        if (n < 2) {
+            return alert(n + ' is not prime number')
+        }
+        else {
+            for (i = 2; i < n; i++) {
+                if (n % i === 0) {
+                    kt = true
+                }
+            } if (kt) {
+                return alert(n + ' is not prime number')
+            } else {
+                return alert(n + ' is prime number')
+            }
+        }
+    }
+    let n = parseInt(prompt('Check prime number'))
+    check_snt(n)
+</script>

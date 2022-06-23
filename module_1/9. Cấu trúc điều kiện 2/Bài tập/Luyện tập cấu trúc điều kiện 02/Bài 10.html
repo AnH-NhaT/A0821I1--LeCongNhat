@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a=parseInt(prompt('Nhập số kWH điện sử sụng'));
+    let result;
+    if (0<a<50){
+        result=a*1549
+    }else{
+        result=a*1549+(a-50)*1600
+    }
+    alert('Gía điện là '+result);
+
+</script>
+</body>
+</html>

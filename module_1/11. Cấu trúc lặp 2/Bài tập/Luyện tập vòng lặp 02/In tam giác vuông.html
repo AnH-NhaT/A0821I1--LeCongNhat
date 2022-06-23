@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    stars1 = ''
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= 5; j++) {
+            stars1 = stars1 + '*'
+            document.write(stars1)
+            break
+        } document.write('<br>')
+    }
+    document.write('<br><br>')
+    stars2 = '******'
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= 5; j++) {
+            stars2 = stars2.slice(0, -1)
+            document.write(stars2)
+            break
+        } document.write('<br>')
+    }
+    document.write('<br><br>')
+    stars3 = '<div style="width: fit-content; text-align: right;">'
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= 5; j++) {
+            stars3 = stars3 + '*'
+            document.write(stars3)
+            break
+        } document.write('<br>')
+    } stars3 = '</div>'
+    document.write('<br><br>')
+    format = '<div style="width: fit-content; text-align: right;">'
+    stars4 = '******'
+    for (let i = 1; i <= 5; i++) {
+        for (let j = 1; j <= 5; j++) {
+            stars4 = stars4.slice(0, -1)
+            document.write(stars4)
+            break
+        } document.write('<br>')
+    } format = '</div>'
+</script>

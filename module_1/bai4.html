@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    class DienThoai {
+        constructor(id, name, brand, price) {
+            this.id = id
+            this.name = name
+            this.brand = brand
+            this.price = price
+        }
+
+        get_id() {
+            return this.id
+        }
+        get_name() {
+            return this.name
+        }
+        get_brand() {
+            return this.brand
+        }
+        get_price() {
+            return this.price
+        }
+
+        set_id(value) {
+            this.id = value
+        }
+        set_name(value) {
+            this.name = value
+        }
+        set_brand(value) {
+            this.brand = value
+        }
+        set_price(value) {
+            this.price = value
+        }
+
+        toString() {
+            document.write('id = ' + this.id + '<br>')
+            document.write('name = ' + this.name + '<br>')
+            document.write('brand = ' + this.brand + '<br>')
+            document.write('price = ' + this.price + '<br><br>')
+        }
+    }
+
+    let dt1 = new DienThoai('1', 'j7prime', 'samsung', 5000000)
+    dt1.toString()
+    let dt2 = new DienThoai('2', 'galaxy', 'samsung', 10000000)
+    dt2.toString()
+</script>

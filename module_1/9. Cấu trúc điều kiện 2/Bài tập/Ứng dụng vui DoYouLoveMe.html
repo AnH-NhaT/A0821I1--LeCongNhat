@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Do you love me ?</h2>
+<input type="button" onclick="alert('<3')" value="YES" >
+<button style="position: absolute" id="move" onmouseover="move()">NO</button>
+<script>
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+function move(){
+    document.getElementById('move').style.left = width*Math.random() +'px'
+    document.getElementById('move').style.top = height*Math.random() +'px'
+}
+</script>
+</body>
+</html>

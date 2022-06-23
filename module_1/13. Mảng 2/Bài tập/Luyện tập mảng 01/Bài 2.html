@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    mang = []
+    let i = 0
+    while (i < 10) {
+        max = mang[0]
+        mang[i] = parseInt(prompt('nhap phan tu thu ' + (i + 1)))
+        if (mang[i] > max)
+            max = mang[i]
+        i++
+    }
+    document.write(mang + '<br>')
+    document.write('Max is ' + max + ' position at: ' + mang.indexOf(max))
+</script>

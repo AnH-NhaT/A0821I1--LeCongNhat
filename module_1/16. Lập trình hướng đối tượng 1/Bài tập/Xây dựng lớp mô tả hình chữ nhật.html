@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    canvas{
+        background-color: red;
+    }
+</style>
+<body style="margin: auto; text-align: center;">
+    <canvas id="canvas" width="500" height="300">
+    </canvas>
+
+    <script>
+        class regtangle {
+            constructor(dodai, dorong) {
+                this.dodai = dodai;
+                this.dorong = dorong;
+            }
+
+            area() {
+                this.area = this.dodai * this.dorong;
+                return this.area;
+            }
+
+            parimetter() {
+                this.parimetter = (this.dodai + this.dorong) * 2;
+                return this.parimetter;
+            }
+
+            getdodai() {
+                return this.dodai;
+            }
+
+            getdorong() {
+                return this.dorong;
+            }
+
+            setdodai(CDmoi) {
+                this.dodai = CDmoi;
+            }
+
+            setdorong(CRmoi) {
+                this.dorong = CRmoi;
+            }
+        }
+
+        let hCN = new regtangle(500, 200);
+        let d = hCN.getdodai()
+        let r = hCN.getdorong()
+        var c = document.getElementById("canvas");
+        var ctx = c.getContext("2d");
+        ctx.fillRect(r, r, d, d);
+        document.write("<br>")
+        hCN.setdodai(400);
+        hCN.setdorong(200);
+        document.write('Chu vi: ' + hCN.parimetter());
+        document.write("<br>")
+        document.write('Diện tích: ' + hCN.area())
+    </script>
+</body>
+
+</html>

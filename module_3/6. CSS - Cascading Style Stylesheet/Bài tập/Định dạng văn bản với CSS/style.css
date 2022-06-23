@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.text-indent-40px {
+    text-indent: 40px;
+}
+.pad-8 {
+    padding-top: 8px;
+}
+.pad-16 {
+    padding-top: 16px;
+}
+.border_top {
+    border-top: 1px solid gray !important;
+}
+.color_light_blue {
+    color: rgb(15, 110, 189) !important;
+}
+.color_blue {
+    color: rgb(4, 4, 250) !important;
+}
+sup {
+    font-size: 8px;
+}
+#main {
+    padding: 20px 40px;
+    line-height: 1.6;
+    text-align: justify;
+    font-size: 16px;
+}

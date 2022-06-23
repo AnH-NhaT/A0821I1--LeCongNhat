@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let a = parseInt(prompt('Nhập số bất kì, a='));
+    let b = parseInt(prompt('b='));
+    let c = parseInt(prompt('c='));
+    if (a > 0 &&
+        b > 0 &&
+        c > 0 &&
+        a + b > c &&
+        a + c > b &&
+        b + c > a)
+    {
+        alert('a,b,c là cạnh của 1 tam giác')
+    }else {
+        alert('a,b,c không là cạnh của 1 tam giác')
+    }
+</script>
+</body>
+</html>

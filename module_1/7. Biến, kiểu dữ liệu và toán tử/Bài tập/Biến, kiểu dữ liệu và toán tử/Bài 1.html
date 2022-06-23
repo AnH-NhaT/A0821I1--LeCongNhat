@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let inputToan = prompt("Nhập điểm toán:");
+        let inputLy = prompt("Nhập điểm lý:");
+        let inputHoa = prompt("Nhập điểm hóa:");
+
+        let toan = parseInt(inputToan);
+        let ly = parseInt(inputLy)
+        let hoa = parseInt(inputHoa);
+        document.write("Điểm toán: " + toan);
+        document.write("<br>");
+        document.write("Điểm lý: " + ly);
+        document.write("<br>");
+        document.write("Điểm hóa: " + hoa);
+        document.write("<br>");
+        document.write("<br>");
+        let tong = toan + ly + hoa;
+        let trungBinh = (toan + ly + hoa) / 3;
+        document.write("Tổng = " + tong);
+        document.write("<br>");
+        document.write("Trung bình = " + trungBinh);
+    </script>
+</body>
+
+</html>

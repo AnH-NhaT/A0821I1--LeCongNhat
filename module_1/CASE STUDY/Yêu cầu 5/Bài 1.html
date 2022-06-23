@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: auto;
+    }
+</style>
+
+<body style="text-align: center;">
+
+</body>
+
+</html>
+<script>
+
+    let count = 1
+    let m = parseInt(prompt('nhap so hang'))
+    let n = parseInt(prompt('nhap so cot'))
+    let arr2d = new Array(m)
+    let sum_even = 0
+    // Nhập vô rồi in ra
+
+    // for (let row = 0; row < m; row++) {
+    //     arr2d[row] = new Array(n)
+    //     for (let col = 0; col < n; col++) {
+    //         let value = parseInt(prompt('nhap [' + row + ']' + '[' + col + '] = '))
+    //         arr2d[row][col] = value
+    //         if (arr2d[row][col] % 2 == 0) {
+    //             sum_even += arr2d[row][col]
+    //         }
+    //     }
+    // }
+
+    // let table = '<table  style="text-align: center;" border=1 cellpadding = 5>'
+    // for (let row = 0; row < m; row++) {
+    //     table += '<tr>'
+    //     for (let col = 0; col < n; col++) {
+    //         table += '<td>'
+    //         table += arr2d[row][col]
+    //         table += '</td>'
+    //     } table += '<tr>'
+    // } table += '</table>'
+    // document.write(table)
+    // document.write('<br>tong cac so chan = ' + sum_even)
+
+
+    // in ra các số tự động bắt đầu từ 1
+
+
+    let table = '<table  style="text-align: center;" border=1 cellpadding = 5>'
+    for (let row = 0; row < m; row++) {
+
+        arr2d[row] = new Array(n) /* tao hang */
+
+        table += '<tr>'
+        for (let col = 0; col < n; col++) {
+            arr2d[row][col] = count
+            table += '<td>'
+            table += arr2d[row][col]
+            if (count % 2 == 0) {
+                sum_even += arr2d[row][col]
+            }
+            table += '</td>'
+            count++
+        } table += '<tr>'
+    } table += '</table>'
+    document.write(table)
+    document.write('<br>tong cac so chan = ' + sum_even)
+
+
+    // let table = '<table  style="text-align: center;" border=1 cellpadding = 5>'
+    // for (let row = 0; row < m; row++) {
+    //     table += '<tr>'
+    //     for (let col = 0; col < n; col++) {
+    //         table += '<td>'
+    //         table += count
+    //         if (count % 2 == 0) {
+    //             sum_even += count
+    //         }
+    //         table += '</td>'
+    //         count++
+    //     } table += '<tr>'
+    // } table += '</table>'
+    // document.write(table)
+    // document.write('<br>tong cac so chan = ' + sum_even)
+
+
+
+
+</script>

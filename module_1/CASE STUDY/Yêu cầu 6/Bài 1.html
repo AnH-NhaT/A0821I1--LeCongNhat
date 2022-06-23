@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        margin: auto;
+        padding: 20px;
+        border-radius: 50%;
+        border: none;
+        color: purple;
+        font-weight: bolder;
+    }
+
+    .haha {
+        border-radius: 10%;
+        padding: 0px;
+        width: 100px;
+        height: 50px;
+    }
+
+    body {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <h1>Xổ số CodeGym</h1>
+    <div>
+        <button id="1" onclick="choose(this)" value="0">00</button>
+        <button id="2" onclick="choose(this)" value="0">00</button>
+        <button id="3" onclick="choose(this)" value="0">00</button>
+        <button id="4" onclick="choose(this)" value="0">00</button>
+        <button id="5" onclick="choose(this)" value="0">00</button>
+        <button id="6" onclick="choose(this)" value="0">00</button>
+    </div>
+    <br>
+    <div>
+        <button id="r1" value="0">00</button>
+        <button id="r2" value="0">00</button>
+        <button id="r3" value="0">00</button>
+        <button id="r4" value="0">00</button>
+        <button id="r5" value="0">00</button>
+        <button id="r6" value="0">00</button>
+    </div>
+    <br>
+    <button class="haha" onclick="random()">Random</button>
+    <button class="haha" onclick="result()">Result</button>
+</body>
+
+</html>
+<script>
+    class occho {
+        constructor(s1, s2, s3, s4, s5, s6) {
+            this.s1 = s1
+            this.s2 = s2
+            this.s3 = s3
+            this.s4 = s4
+            this.s5 = s5
+            this.s6 = s6
+        }
+        gets1() {
+            return this.s1
+        }
+        gets2() {
+            return this.s2
+        }
+        gets3() {
+            return this.s3
+        }
+        gets4() {
+            return this.s4
+        }
+        gets5() {
+            return this.s5
+        }
+        gets6() {
+            return this.s6
+        }
+        sets1(input) {
+            document.getElementById('1').value = input
+            this.s1 = document.getElementById('1').value
+        }
+        sets2(input) {
+            document.getElementById('2').value = input
+            this.s2 = document.getElementById('2').value
+        }
+        sets3(input) {
+            document.getElementById('3').value = input
+            this.s3 = document.getElementById('3').value
+        }
+        sets4(input) {
+            document.getElementById('4').value = input
+            this.s4 = document.getElementById('4').value
+        }
+        sets5(input) {
+            document.getElementById('5').value = input
+            this.s5 = document.getElementById('5').value
+        }
+        sets6(input) {
+            document.getElementById('6').value = input
+            this.s6 = document.getElementById('6').value
+        }
+        show() {
+            document.getElementById('1').innerHTML = this.s1
+            document.getElementById('2').innerHTML = this.s2
+            document.getElementById('3').innerHTML = this.s3
+            document.getElementById('4').innerHTML = this.s4
+            document.getElementById('5').innerHTML = this.s5
+            document.getElementById('6').innerHTML = this.s6
+            document.getElementById('1').value = this.s1
+            document.getElementById('2').value = this.s2
+            document.getElementById('3').value = this.s3
+            document.getElementById('4').value = this.s4
+            document.getElementById('5').value = this.s5
+            document.getElementById('6').value = this.s6
+        }
+        inner_random() {
+            let RANDOM1 = Math.round(Math.random() * 99)
+            let RANDOM2 = Math.round(Math.random() * 99)
+            let RANDOM3 = Math.round(Math.random() * 99)
+            this.s1 = RANDOM1
+            this.s2 = RANDOM2
+            this.s3 = RANDOM3
+            let RANDOM4 = Math.round(Math.random() * 99)
+            let RANDOM5 = Math.round(Math.random() * 99)
+            let RANDOM6 = Math.round(Math.random() * 99)
+            this.s4 = RANDOM4
+            this.s5 = RANDOM5
+            this.s6 = RANDOM6
+        }
+        view() {
+            let random1 = Math.round(Math.random() * 99)
+            let random2 = Math.round(Math.random() * 99)
+            let random3 = Math.round(Math.random() * 99)
+            let random4 = Math.round(Math.random() * 99)
+            let random5 = Math.round(Math.random() * 99)
+            let random6 = Math.round(Math.random() * 99)
+            document.getElementById('r1').innerHTML = random1
+            document.getElementById('r2').innerHTML = random2
+            document.getElementById('r3').innerHTML = random3
+            document.getElementById('r4').innerHTML = random4
+            document.getElementById('r5').innerHTML = random5
+            document.getElementById('r6').innerHTML = random6
+            document.getElementById('r1').value = random1
+            document.getElementById('r2').value = random2
+            document.getElementById('r3').value = random3
+            document.getElementById('r1').value = random4
+            document.getElementById('r2').value = random5
+            document.getElementById('r3').value = random6
+            console.log('================================');
+            console.log(parseInt(this.s1),
+                parseInt(this.s2), parseInt(this.s3),
+                parseInt(this.s4), parseInt(this.s5),
+                parseInt(this.s6));
+            console.log(random1, random2, random3, random4, random5, random6);
+            if (
+                parseInt(this.s1) == random1 &&
+                parseInt(this.s2) == random2 &&
+                parseInt(this.s3) == random3 &&
+                parseInt(this.s4) == random4 &&
+                parseInt(this.s5) == random5 &&
+                parseInt(this.s6) == random6
+
+            ) { alert('First') }
+            else if (
+                parseInt(this.s2) == random2 &&
+                parseInt(this.s3) == random3 &&
+                parseInt(this.s4) == random4 &&
+                parseInt(this.s5) == random5 &&
+                parseInt(this.s6) == random6
+
+            ) { alert('Second') }
+            else if (
+                parseInt(this.s4) == random4 &&
+                parseInt(this.s5) == random5 &&
+                parseInt(this.s6) == random6
+
+            ) { alert('Third') }
+            else { alert('Encouragement') }
+        }
+    }
+
+    let OPP = new occho(35, 46, 23, 68, 99, 11)
+    OPP.show()
+    function random() {
+        OPP.inner_random()
+        OPP.show()
+    }
+    function result() {
+        OPP.view()
+    }
+    function choose(haha) {
+        do {
+            let input = prompt('Input from 00 to 99')
+            if (input == parseInt(input) && input.split('').length == 2) {
+                switch (haha.id) {
+                    case '1':
+                        OPP.sets1(input)
+                        break
+                    case '2':
+                        OPP.sets2(input)
+                        break
+                    case '3':
+                        OPP.sets3(input)
+                        break
+                    case '4':
+                        OPP.sets4(input)
+                        break
+                    case '5':
+                        OPP.sets5(input)
+                        break
+                    case '6':
+                        OPP.sets6(input)
+                        break
+                }
+                OPP.show()
+                break
+            }
+            else { alert('Invalid input') }
+        } while (true)
+
+    }
+</script>

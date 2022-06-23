@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        h2 {
+            margin-top: 40px;
+            margin-bottom: 5px;
+        }
+
+        span {
+            border: 1px solid black;
+            padding: 2px 5px;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <h2>FootToMeter</h2>
+    <input placeholder="Enter foots here" type="number" oninput="footToMeter(this.value)">
+    <span id="show">result</span>
+    <h2>MeterToFoot</h2>
+    <input placeholder="Enter meters here" type="number" oninput="meterToFoot(this.value)">
+    <span id="show2">result</span>
+</body>
+
+</html>
+<script>
+    function footToMeter(foot) {
+        foot = parseFloat(foot)
+        let meter = parseFloat(0.305 * foot)
+        document.getElementById('show').innerHTML = (foot + ' foots = ' + meter + ' meters')
+    }
+    function meterToFoot(meter) {
+        meter = parseFloat(meter)
+        let foot = 3.279 * meter
+        document.getElementById('show2').innerHTML = (meter + ' meters = ' + foot + ' foots')
+    }
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="text-align: center;">
+
+</body>
+
+</html>
+<script>
+    n = parseInt(prompt('Nhap so phan tu cua mang'))
+    nhap(n, arr = [])
+    document.write('truoc khi dao mang<br>')
+    document.write(arr + '<br>')
+    document.write('sau khi dao mang<br>')
+    document.write(dao(arr2 = []))
+
+    function nhap(n) {
+        let i = 0
+        while (i < n) {
+            arr[i] = parseInt(prompt('So thu ' + (i + 1)))
+            i++
+        }
+    }
+    function dao() {
+        let i = arr.length - 1
+        while (i >= 0) {
+            arr2.push(arr[i])
+            i--
+        }
+        return arr2
+    }
+</script>

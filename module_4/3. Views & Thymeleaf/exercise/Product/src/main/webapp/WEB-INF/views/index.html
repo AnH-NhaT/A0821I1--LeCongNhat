@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-center">
+        <h1>product management</h1>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div>
+        </div>
+        <div>
+            <button type="button" class="add"
+                    data-toggle="modal"
+                    data-target="#modalSave">add a product
+            </button>
+        </div>
+    </div>
+    <div>
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>order</th>
+                <th>name</th>
+                <th>price</th>
+                <th>description</th>
+                <th>producer</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product, status : ${productList}">
+                <td th:text="${status.count}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.price}"></td>
+                <td th:text="${product.description}"></td>
+                <td th:text="${product.producer}"></td>
+                <td>
+                    <button type="button" class="edit"
+                            data-toggle="modal"
+                            data-target="#modalSave"
+                            th:data-id="${product.id}"
+                            th:data-name="${product.name}"
+                            th:data-price="${product.price}"
+                            th:data-description="${product.description}"
+                            th:data-producer="${product.producer}">edit
+                    </button>
+                    <button
+                            type="button" class="delete"
+                            data-toggle="modal"
+                            data-target="#modalDelete"
+                            th:data-name="${product.name}">delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div></div>
+    <div></div>
+</div>
+<!--ModalPopup delete-->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5>are you sure to delete?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="/Servlet?action=delete">
+                <input id="id_delete" name="id" type="hidden">
+                <div class="modal-body">
+                    <h4 id="deletedName"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--ModalPopup save-->
+<div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">save information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="saveFormId" action="" method="post" th:object="${product}">
+                    <table>
+                        <tr>
+                            <th>id</th>
+                            <td>
+                                <input type="number" th:field="*{id}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>name</th>
+                            <td>
+                                <input type="text" th:field="*{name}" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>price</th>
+                            <td>
+                                <input type="number" th:field="*{price}" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>description</th>
+                            <td>
+                                <input type="text" th:field="*{description}" required>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>producer</th>
+                            <td>
+                                <input type="text" th:field="*{producer}" required>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(".edit").click(function () {
+        $("input[name='id']").val($(this).data("id"));
+        $("input[name='name']").val($(this).data("name"));
+        $("input[name='price']").val($(this).data("price"));
+        $("input[name='description']").val($(this).data("description"));
+        $("input[name='producer']").val($(this).data("producer"));
+    })
+    $(".delete").click(function () {
+        $("#deletedName").text("name: " + $(this).data("name"))
+    })
+    $(".add").click(function () {
+        $('#saveFormId').trigger("reset")
+    })
+</script>

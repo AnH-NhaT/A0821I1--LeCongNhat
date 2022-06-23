@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        border-collapse: collapse;
+        margin: auto;
+    }
+</style>
+
+<body style="text-align: center;">
+
+</body>
+
+</html>
+<script>
+
+    let count = 1
+    let m = parseInt(prompt('nhap so hang'))
+    let n = parseInt(prompt('nhap so cot'))
+    let arr2d = new Array(m)
+    let arr2d_ngu = []
+
+    for (let row = 0; row < m; row++) {
+        arr2d[row] = new Array(n)
+        for (let col = 0; col < n; col++) {
+            let value = parseInt(prompt('nhap [' + row + ']' + '[' + col + '] = '))
+            arr2d[row][col] = value
+            arr2d_ngu.push(value)
+        }
+    }
+
+    let table = '<table  style="text-align: center;" border=1 cellpadding = 5>'
+    for (let row = 0; row < m; row++) {
+        table += '<tr>'
+        for (let col = 0; col < n; col++) {
+            table += '<td>'
+            table += arr2d[row][col]
+            table += '</td>'
+        } table += '<tr>'
+    } table += '</table>'
+    document.write(table)
+    let max = Math.max.apply(Math, arr2d_ngu)
+    let min = Math.min.apply(Math, arr2d_ngu)
+    document.write('max = ' + max)
+    document.write('<br>min = ' + min)
+
+</script>

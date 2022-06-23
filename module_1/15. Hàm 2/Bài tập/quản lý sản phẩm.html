@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        span {
+            float: left;
+            width: 50%;
+            margin-left: 50px;
+            font-size: x-large;
+            font-weight: bold;
+        }
+
+        #body {
+            width: 700px;
+            margin: auto;
+            border: 1px solid rgb(81, 194, 86);
+            border-top: none;
+        }
+
+        #data_table div {
+            height: 60px;
+            display: flex;
+            background-color: white;
+            align-items: center;
+        }
+
+        #data_table button {
+            color: white;
+            border: none;
+            padding: 13px;
+        }
+
+        .btnDelete {
+            background-color: red;
+            border-radius: 7%;
+        }
+
+        .btnEdit {
+            margin-right: 120px;
+            background-color: blue;
+            border-radius: 7%;
+        }
+
+        #add {
+            border-radius: 7%;
+            background-color: rgb(81, 194, 86);
+            color: white;
+            border: none;
+            padding: 13px;
+            margin-left: 10px;
+        }
+
+        .divadd {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgb(241, 241, 241);
+            height: 100px;
+            width: 500px;
+            margin: auto;
+        }
+
+        #input_sp {
+            height: 40px;
+            width: 300px;
+        }
+
+        #product {
+            border: 1px solid rgb(81, 194, 86);
+            width: 700px;
+            margin: auto;
+        }
+
+        #text_display {
+            float: left;
+            margin-left: 10px;
+        }
+
+        #quantity {
+            margin-right: 10px;
+            text-align: right;
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="header" style="text-align: center;">
+
+        <h1>Add New Product</h1>
+
+        <div class="divadd">
+            <input id="input_sp" placeholder="Enter to add or click button" type="text" oninput="fun_oninput()"
+                onkeydown="btn_add(this)">
+            <button id="add" onclick="btn_add(this)">Add</button>
+        </div>
+
+        <h1>Display All Product</h1>
+
+        <div id="product">
+            <h2 id="text_display">Product Name</h2>
+            <h2 id="quantity">0 Product</h2>
+        </div>
+
+    </div>
+
+
+    <div id="body">
+        <div id="data_table" style="width: 100%;"></div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+
+    document.getElementById('body').style.display = 'none'
+    let arrow = []
+    let valueInput = ''
+    function fun_oninput() {
+        valueInput = document.getElementById('input_sp').value
+    }
+
+    function new_row(id_row) {       /* chi dau + moi duoc xuong dong */                                           /* to avoid duplication of id */
+        return '<div>' + '<span>' +
+            valueInput + '</span> <button class="btnEdit" id=edit_' +
+            id_row + ' onclick="btn_edit(this.id)">Edit</button> <button class="btnDelete" id=delete_' +
+            id_row + ' onclick="btn_delete(this.id)">Delete</button> ' + '</div>'
+    }
+
+    function btn_add(buTTon) {
+        if (event.key === 'Enter' || buTTon.id == 'add') {
+            if (valueInput != '') {
+                arrow.push(new_row(arrow.length))/* add value and its id to array */
+                document.getElementById('input_sp').value = ''
+                document.getElementById('input_sp').focus()
+                show_array()
+            } else {
+                alert("Can't be left blank")
+            }
+        }
+    }
+
+    function show_array() {
+        let sum = ''
+        for (let index in arrow) {
+            if (index % 2 == 0) {   /* <div + style="..." + the rest of it */
+                sum += arrow[index].substring(0, 4) + ' style="background-color: aliceblue;" ' + arrow[index].substring(4, arrow[index].length)
+            } else {                /* Odd number, turns its color */
+                sum += arrow[index]
+            }
+        }
+        document.getElementById('quantity').innerText = arrow.length + ' Products'
+        document.getElementById('body').style.display = ''
+        document.getElementById('data_table').innerHTML = sum   /* show by html */
+    }
+
+    function btn_delete(id_new) {  /* id_new = this.id */
+        console.log(id_new)
+        let index = arrow.findIndex(value => value.indexOf(id_new) >= 0)
+        if (index >= 0) {
+            if (confirm('Are you sure to delete!')) {
+                arrow.splice(index, 1)
+                show_array()
+            }
+        }
+    }
+
+    function btn_edit(id_new) {
+        console.log(id_new)                                 /* ??? */
+        let index = arrow.findIndex(value => value.indexOf(id_new) >= 0)
+        if (index >= 0) {
+            valueInput = prompt('Edit product here')    /* here */
+            if (valueInput != null) {
+                if (confirm('Are you sure to edit!')) {
+                    arrow[index] = new_row(id_new)     /* id_new = this.id */
+                    show_array()     /* pass tham tri */
+                }
+            }
+        }
+    }
+</script>

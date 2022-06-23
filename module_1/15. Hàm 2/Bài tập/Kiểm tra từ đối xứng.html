@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let str = prompt('Kiểm tra chuỗi đối xứng')
+    function temp(str) {
+        if (str.length > 1) {
+            let a = str.slice(0, 1)     /* extract from 0 to 1 */
+            let b = str.slice(-1)   /* extract from -1 to 0 */
+            if (a == b) {
+                str = str.slice(1, str.length - 1);     /* xóa 2 ele biên */
+                return temp(str)    /* this is recur */
+            } else {
+                alert('wrong')
+            }
+        } else {
+            alert('right')
+        }
+    }
+    temp(str)
+</script>

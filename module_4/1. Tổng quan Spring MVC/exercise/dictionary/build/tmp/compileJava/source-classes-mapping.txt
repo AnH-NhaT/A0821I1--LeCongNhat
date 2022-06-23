@@ -1,0 +1,6 @@
+service/WordService.java
+ service.WordService
+controller/HomeServlet.java
+ controller.HomeServlet
+model/Word.java
+ model.Word

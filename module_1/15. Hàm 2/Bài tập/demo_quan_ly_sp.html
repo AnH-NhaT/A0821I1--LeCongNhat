@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        tr:nth-child(odd) {
+            border-left: 1px solid red;
+            border-right: 1px solid red;
+            background-color: rgb(205, 245, 245);
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            border-left: 1px solid blue;
+            border-right: 1px solid blue;
+            background-color: rgb(250, 250, 250);
+            color: black;
+        }
+
+        th {
+            border-bottom: 1px solid black;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            border-top: 1px solid purple;
+            border-bottom: 1px solid green;
+        }
+
+        th {
+            background-color: beige;
+        }
+
+        #red {
+            color: red;
+            text-align: right;
+            margin-right: 10px;
+        }
+
+        input {
+            width: 225px;
+        }
+
+        label {
+            font-size: 38px;
+            font-weight: bold;
+        }
+
+        #dan {
+            border-right: 1px solid green;
+        }
+    </style>
+</head>
+
+<body style="text-align: center;">
+    <label for="input">Add new Product</label><br><br>
+    <input onkeydown="addNewProduct(this)" type="text" placeholder="Nhập tên sản phẩm" id="input">
+    <button id="add" onclick="addNewProduct(this)">Add</button><br><br>
+    <div id="display"> </div>
+</body>
+<script>
+    let productList = ["Iphone 11", "Samsung Galaxy", "Nokia", "Xiaomi", "Blackberry"];
+
+    display();
+
+    function display() {
+        let table = "<table border='0px' cellpadding='10px'>" +
+            "<tr> <th id='dan'>Product Name</th>" +
+            "<th id='red' colspan=2>" + productList.length +
+            " Products</th></tr>";
+        //Duyệt mảng để hiển thị từng giá trị của mảng. Mỗi vòng lặp là 1 dòng.
+        for (let i = 0; i < productList.length; i++) {
+            table += "<tr>" +   /* gan 1 phan tu trong mang thanh 1 <tr> */
+                "<td>" + productList[i] + "</td>" +
+                "<td><button onclick='editProduct(" + i + ")'>Edit</button></td>" +
+                "<td><button onclick='deleteProduct(" + i + ")'>Delete</button></td>" +
+                "</tr>"
+        }
+        table += "</table>"
+        document.getElementById('display').innerHTML = table;
+    }
+
+    function addNewProduct(both) {
+        let product = document.getElementById('input').value;
+        if (event.key === 'Enter' || both.id === 'add') {
+            if (document.getElementById('input').value != '') {
+                productList.push(product);
+                document.getElementById('input').value = "";
+                document.getElementById('input').focus()
+                display();
+            } else (
+                alert('Chưa nhập gì mà chú')
+            )
+        }
+
+    }
+
+    function editProduct(index) {
+        productList[index] = prompt("Nhập tên mới: ")
+        if (productList[index] == null) {
+            productList[index] = ''
+            display();
+        } else {
+            display();
+        }
+    }
+
+    function deleteProduct(index) {
+        let check = confirm("Bạn có muốn xóa sản phẩm " + productList[index] + " Không?");
+        if (check) {
+            productList.splice(index, 1);
+            display();
+        }
+    }
+
+
+</script>
+</html>
+

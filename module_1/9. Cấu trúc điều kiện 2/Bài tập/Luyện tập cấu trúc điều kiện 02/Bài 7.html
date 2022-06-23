@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ax^2+bx+c=0</title>
+</head>
+<body>
+<script>
+    let a=prompt('Nhập a:');
+    let b=prompt('Nhập b:');
+    let c=prompt('Nhập c:');
+    let delta=b*b-4*a*c;
+   if (delta===0){
+       x=-b/(2*a)
+       alert('Phương trình có nghiệm kép x='+x)
+   }else if(delta>0){
+       d=Math.sqrt(delta)
+       x1=(-b-d)/(2*a)
+       x2=(-b+d)/(2*a)
+       alert('Phương trình có 2 nghiệm là '+x1+' và '+x2 )
+   }else {
+       alert('Phương trình vô nghiệm')
+   }
+</script>
+</body>
+</html>

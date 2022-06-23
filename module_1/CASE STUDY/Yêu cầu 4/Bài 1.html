@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let hochai = prompt('nhap mot chuoi vao day')
+    cap(hochai)
+    function cap(str) {
+        str = str.toLowerCase()
+        str = str.trim()
+        str = str.split(' ')
+        let new_str = []
+        let alo = []
+        let ngu
+        for (let value of str) {
+            if (value != '')
+                new_str.push(value)
+        }
+        for (let va of new_str) {
+            ngu = va
+            ngu = ngu.split('')
+            ngu[0] = ngu[0].toUpperCase()
+            ngu = ngu.join('')
+            alo.push(ngu)
+        }
+        alert(alo.join(' '));
+    }
+</script>

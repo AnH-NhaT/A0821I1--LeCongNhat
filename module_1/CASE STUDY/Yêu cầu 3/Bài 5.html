@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+            line-height: 3em;
+        }
+    </style>
+</head>
+
+<body>
+    <button onclick="clich()">Click to input</button>
+</body>
+
+</html>
+<script>
+
+    document.write('<br>' + 'press 1 (cafe)' + '<br>')
+    document.write('press 2 (squeezing orange)<br>')
+    document.write('press 3 (carrot juice)<br>')
+    document.write('press 4 (tomato juice)<br>')
+    document.write('press 5 (filter water)<br>')
+    document.write('press 6 (avocado water)<br>')
+    document.write('press 7 (exit to order)')
+    function clich() {
+        do {
+            n = parseInt(prompt('choose numbers from 1 through 7 for order'))
+            if (n == 1) {
+                alert('cafe costs: 5$')
+                cafe = parseInt(prompt('enter quantity:'))
+                alert('Total is: ' + 5 * cafe + '$')
+                break
+            }
+            else if (n == 2) {
+                alert('squeezing orange costs: 3$')
+                orange = parseInt(prompt('enter quantity:'))
+                alert('Total is: ' + 3 * orange + '$')
+                break
+            }
+            else if (n == 3) {
+                alert('carrot juice costs: 7$')
+                carrot = parseInt(prompt('enter quantity:'))
+                alert('Total is: ' + 7 * carrot + '$')
+                break
+            }
+            else if (n == 4) {
+                alert('tomato juice costs: 9$')
+                tomato = parseInt(prompt('enter quantity:'))
+                alert('Total is: ' + 9 * tomato + '$')
+                break
+            }
+            else if (n == 5) {
+                alert('filter water costs: 2$')
+                filter = parseInt(prompt('enter quantity:'))
+                alert('Total is: ' + 2 * filter + '$')
+                break
+            }
+            else if (n == 6) {
+                alert('avocado water costs: 4$')
+                avocado = parseInt(prompt('enter quantity:'))
+                alert('Total is: ' + 4 * avocado + '$')
+                break
+            }
+            else if (n == 7) {
+                alert('you just left order')
+                break
+            }
+            else {
+                alert('choose numbers from 1 through 7 for order')
+            }
+        } while (true)
+    }
+</script>

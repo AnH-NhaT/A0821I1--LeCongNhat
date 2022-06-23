@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <script>
+        class temp {
+            constructor(doC) {
+                this.doC = doC;
+            }
+            doF() {
+                this.doF = (this.doC * 1.8) + 32;
+                return this.doF;
+            }
+            doK() {
+                this.doK = this.doC + 273.15;
+                return this.doK;
+            }
+        }
+        let nhietdoC = new temp(30)
+        document.write('Số độ F là: ' + nhietdoC.doF() + '<br>');
+        document.write('Số độ K là: ' + nhietdoC.doK())
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    // arr = Array.from(new Set(arr))
+    function xuat_hien_mot_lan_in_array(c) {
+        let d = []
+        let ngu = undefined /* important */
+        for (let i = 0; i < c.length; i++) {
+            for (let j = 0; j < c.length; j++) {
+                if (c[i] === c[j]) {
+                    ngu = c[j] // must assign by this
+                    d.push(ngu)
+                    for (let g = 0; g < c.length; g++) {
+                        if (c[g] === ngu) {
+                            c.splice(g, 1)
+                            g--
+                            // j-- (i or j)
+                            i--
+                        }
+                    }
+                }
+            }
+        }
+        return d
+    }
+
+    let arr = [1, 2, 2, 3, 3, 3, 5, 2, 5, 1]
+    let res = []
+    let lan1 = xuat_hien_mot_lan_in_array(arr.slice()) /* convert to array type */
+    document.write(lan1 + '<br>') /* tham chieu */
+    document.write(arr + '<br>')
+    document.write(lan1[1] + '<br>')
+    document.write(arr[1] + '<br>')
+
+    // ham tim so chi xuat hien 2 lan
+    for (let i = 0; i < lan1.length; i++) {
+        let count = 0
+        for (let j = 0; j < arr.length; j++) {
+            if (lan1[i] == arr[j]) {
+                count++
+                if (count == 2) {
+                    res.push(lan1[i]) /* push this not arr[j] */
+                } else if (count > 2) {
+                    res.pop()
+                }
+            }
+        }
+
+    }
+    document.write('so chi xuat hien 2 lan:<br>')
+    document.write(res)
+</script>

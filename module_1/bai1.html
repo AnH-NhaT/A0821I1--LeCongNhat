@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    let arr = []
+    let chan = 0
+    let le = 0
+    let arrchan = []
+    let arrle = []
+    let n = parseInt(prompt('Input quantity of elements'))
+    while (n <= 20) {
+        for (let i = 0; i < n; i++) {
+            arr[i] = parseInt(prompt('input each of elements'))
+            if (arr[i] % 2 == 0) {
+                chan += arr[i]
+                arrchan.push(arr[i])
+            } else {
+                le += arr[i]
+                arrle.push(arr[i])
+            }
+        }
+        document.write(arr + '<br>')
+        arrchan = arrchan.join(' + ')
+        document.write('(' + arrchan + ')')
+        arrle = arrle.join(' + ')
+        document.write(' - (' + arrle + ')')
+        document.write(' = ' + (chan - le))
+        break
+    }
+
+</script>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h2 {
+        display: inline;
+        color: red;
+    }
+</style>
+
+<body>
+
+</body>
+
+</html>
+<script>
+
+    // arr = Array.from(new Set(arr))
+    function xuat_hien_mot_lan_in_array(c) {
+        let d = []
+        let ngu = undefined /* importain */
+        for (let i = 0; i < c.length; i++) {
+            for (let j = 0; j < c.length; j++) {
+                if (c[i] == c[j]) {
+                    ngu = c[j] // must assign by this
+                    d.push(ngu)
+                    for (let g = 0; g < c.length; g++) {
+                        if (c[g] == ngu) {
+                            c.splice(g, 1)
+                            g--
+                            // j-- (i or j)
+                            i--
+                        }
+                    }
+                }
+            }
+        }
+        return d
+    }
+
+    function max(ngu) {
+        let vip = ngu[0]
+        for (let i = 0; i < ngu.length; i++) {
+            if (ngu[i] > vip)
+                vip = ngu[i]
+        }
+        return vip
+    }
+
+    let arr = [1, 2, 2, 3, 3, 2, 2, 3, 3,
+        4, 4, 5, 6, 6, 7, 9, 8, 7, 6, 5, 5, 5, 6]
+    let res = []
+    let lan1 = xuat_hien_mot_lan_in_array(arr.slice())
+    let index_max = []
+    let index_min = []
+    let final_max = []
+    final_max = maxxx()
+    let final_min = []
+    final_min = minnn()
+
+
+    function times() {
+        for (let i = 0; i < lan1.length; i++) {
+            let count = 0
+            for (let j = 0; j < arr.length; j++) {
+                if (lan1[i] == arr[j]) {
+                    count++
+                }
+            }
+            res.push(count)
+        }
+        return res
+    } res = times()
+
+    //----------------------------------------
+
+    document.write('ARR = ' + arr + '<br>')
+    document.write('ONCE = ' + lan1 + ' => name<br>')
+    document.write('TIME&ensp;= ' + res + ' => count<br>')
+    let num_max = /* Math.max.apply(Math, res) */ max(res)
+    let num_min = Math.min.apply(Math, res)
+    document.write('MAX_TIMES = ' + num_max + '<br>')
+    document.write('MIN_TIMES = ' + num_min + '<br>')
+
+
+
+    //----------------------------------------
+
+    function maxxx() {
+        for (let i = 0; i < res.length; i++) {
+            if (num_max == res[i]) {
+                index_max.push(i)
+            }
+        }
+        for (let i = 0; i < index_max.length; i++) {
+            final_max.push(lan1[index_max[i]])
+        }
+        return final_max
+    }
+    document.write('RESULT = [' + final_max + ']&ensp;IS THE MOST WITH&ensp;<h2>' + num_max + '</h2>&ensp;TIMES<br>')
+
+
+    //-----------------------------------------
+
+
+    function minnn() {
+        for (let i = 0; i < res.length; i++) {
+            if (num_min == res[i]) {
+                index_min.push(i)
+            }
+        }
+        for (let i = 0; i < index_min.length; i++) {
+            final_min.push(lan1[index_min[i]])
+        }
+        return final_min
+    }
+    document.write('RESULT = [' + final_min + ']&ensp;IS THE LEAST WITH&ensp;<h2>' + num_min + '</h2>&ensp;TIMES<br>')
+
+</script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    let n = parseInt(prompt('nhap mot so tu nhien dang abcd...'))
+    // let m = n % 10
+    // alert(m);
+    let max = 0;
+    while (n > 0) {/* because int 0.9 % 10 = 0 ==> stop */
+        let temp = n % 10
+        n /= 10
+        if (temp > max)
+            max = temp
+    } alert('max = ' + parseInt(max))
+</script>

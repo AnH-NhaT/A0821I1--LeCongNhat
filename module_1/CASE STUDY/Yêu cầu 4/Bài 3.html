@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+<script>
+    s1 = 'abbcccdddd'
+    s1 = s1.split('')
+    s2 = 'abcddcccca'
+    s2 = s2.split('')
+    document.write('s1 = ' + s1 + '<br>')
+    document.write('s2 = ' + s2 + '<br>')
+    let arr = []
+    let count = 0
+    for (let i = 0; i < s1.length; i++) {
+        for (let j = 0; j < s2.length; j++) {
+            if (s1[i] == s2[j]) {
+                arr.push(s2[j])
+                s2.splice(j, 1)
+                s1.splice(i, 1)
+                j--
+                i--
+            }
+        }
+    }
+    document.write('commonCharacterCount(s1, s2) = ' + arr.length + '<br>')
+    document.write(arr + '<br>')
+    for (let va of Array.from(new Set(arr))) {
+        for (let vain of arr) {
+            if (va == vain) {
+                count += 1
+            }
+        } document.write(count + ' ky tu ' + va + '<br>')
+        count = 0
+    }
+</script>
