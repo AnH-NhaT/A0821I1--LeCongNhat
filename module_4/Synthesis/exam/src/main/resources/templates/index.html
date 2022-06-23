@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="mine/css/me.css">
+    <script src="mine/js/me.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1><a id="appName" href="/">examination</a></h1>
+    </div>
+    <div class="topBar d-flex justify-content-between">
+
+        <div>
+            <button type="button"
+                    data-toggle="modal"
+                    data-target="#modalSave"
+                    class="add"
+            >add new one
+            </button>
+        </div>
+
+        <div>
+            <form>
+                <label><input id="searchBox" name="title" placeholder="tiêu đề"></label>
+                <label>
+                    <select name="question_type_id">
+                        <option value="">-- Chọn loại câu hỏi--</option>
+                        <option th:each="c:${questionTypeList}"
+                                th:text="${c.name}"
+                                th:value="${c.id}">
+                        </option>
+                    </select>
+                </label>
+                <button id="searchBtn" type="Tìm kiếm">search</button>
+            </form>
+        </div>
+
+    </div>
+    <div class="tableOfContents">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr class="bg-light text-dark">
+                <th>STT
+                </th>
+
+                <th>Tiêu đề
+                </th>
+
+                <th>Loại câu hỏi
+                </th>
+
+                <th>Ngày đăng
+                </th>
+
+                <th>Tình trạng
+                </th>
+
+                <th>Tính năng
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="index,status:${questionContentList}">
+                <td th:text="${status.count}"></td>
+                <td th:text="${index.title}"></td>
+                <td th:text="${index.questionType.name}"></td>
+                <td th:text="${index.date_create}"></td>
+                <td th:text="${index.status ? 'Chờ phản hồi' : 'Đã phản hồi'}"></td>
+                <td>
+                    <button type="button"
+                            data-target="#modalSave"
+                            data-toggle="modal"
+                            class="edit"
+                            th:data-id="${index.id}"
+                            th:data-title="${index.title}"
+                            th:data-answer="${index.answer}"
+                            th:data-status="${index.status}"
+                            th:data-date_create="${index.date_create}"
+                            th:data-content="${index.content}"
+                            th:data-question_type_id="${index.questionType.id}"
+                    >edit
+                    </button>
+                    <button type="button"
+                            class="delete"
+                            th:data-id="${index.id}"
+                            data-toggle="modal"
+                            data-target="#modalDelete"
+                    >delete
+                    </button>
+                    <button type="button"
+                            data-target="#modalView"
+                            data-toggle="modal"
+                            class="edit"
+                            th:data-id="${index.id}"
+                            th:data-title="${index.title}"
+                            th:data-answer="${index.answer}"
+                            th:data-status="${index.status}"
+                            th:data-date_create="${index.date_create}"
+                            th:data-content="${index.content}"
+                            th:data-question_type_id="${index.questionType.id}"
+                    >view
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+</body>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">are you sure to delete?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/delete" method="post">
+                <div class="modal-footer">
+                    <input id="id_delete" name="id" type="hidden">
+                    <button type="button" data-dismiss="modal">close</button>
+                    <button type="submit">save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">save information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="saveFormId" action="/save" method="post" th:object="${questionContent}">
+                    <script th:inline="javascript"
+                            th:if="${#fields.hasAnyErrors()}">
+                        $('#modalSave').modal('show')
+                    </script>
+                    <input type="hidden" th:field="*{id}">
+                    <table>
+
+                        <tr>
+                            <th>Tiêu đề</th>
+                            <td>
+                                <label> <input th:field="*{title}"> </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('title')}" th:errors="*{title}">
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Nội dung</th>
+                            <td>
+                                <label> <textarea th:field="*{content}"></textarea> </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('content')}" th:errors="*{content}">
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Phản hồi</th>
+                            <td>
+                                <label> <input th:field="*{answer}"> </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('answer')}" th:errors="*{answer}">
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Loại câu hỏi</th>
+                            <td>
+                                <label>
+                                    <select th:field="*{questionType}">
+                                        <option th:each="index:${questionTypeList}"
+                                                th:text="${index.name}"
+                                                th:value="${index.id}">
+                                        </option>
+                                    </select>
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Ngày đăng</th>
+                            <td>
+                                <label> <input type="date" th:field="*{date_create}"> </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('date_create')}" th:errors="*{date_create}">
+                                </label>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <th>Tình trạng</th>
+                            <td>
+                                <label>Đã Phản Hồi <input type="radio" name="status" value="false" checked> </label>
+                                <label>Chờ Phản Hồi <input type="radio" name="status" value="true"> </label>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal">close</button>
+                        <button type="submit" id="saveBtn">save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modalView" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Xem chi tiết câu hỏi</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form action="/delete" method="post" th:object="${questionContent}">
+                <input type="hidden" th:field="*{id}">
+                <table>
+
+                    <tr>
+                        <th>Tiêu đề</th>
+                        <td>
+                            <label> <input th:field="*{title}" disabled> </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Nội dung</th>
+                        <td>
+                            <label> <textarea th:field="*{content}" disabled></textarea> </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Phản hồi</th>
+                        <td>
+                            <label> <input th:field="*{answer}" disabled> </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Loại câu hỏi</th>
+                        <td>
+                            <label>
+                                <select th:field="*{questionType}" disabled>
+                                    <option th:each="index:${questionTypeList}"
+                                            th:text="${index.name}"
+                                            th:value="${index.id}">
+                                    </option>
+                                </select>
+                            </label>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Ngày đăng</th>
+                        <td>
+                            <label> <input th:field="*{date_create}" disabled> </label>
+                        </td>
+                    </tr>
+
+<!--                    <tr>-->
+<!--                        <th>Tình trạng</th>-->
+<!--                        <td>-->
+<!--                            <label> <input th:field="*{status}" disabled> </label>-->
+<!--                        </td>-->
+<!--                    </tr>-->
+
+
+                    <tr>
+                        <th>Tình trạng</th>
+                        <td>
+                            <label>Đã Phản Hồi <input disabled type="radio" name="status" value="false" checked> </label>
+                            <label>Chờ Phản Hồi <input disabled type="radio" name="status" value="true"> </label>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">close</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</html>

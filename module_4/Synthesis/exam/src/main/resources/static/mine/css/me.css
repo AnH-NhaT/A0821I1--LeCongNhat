@@ -1,0 +1,16 @@
+.nameDel{
+    color: red;
+}
+
+body, button {
+    text-transform: capitalize
+}
+
+#appName {
+    color: deepskyblue;
+}
+
+#appName:hover {
+    color: red;
+    text-decoration: none;
+}

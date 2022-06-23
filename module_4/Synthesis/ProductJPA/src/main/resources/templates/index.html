@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>home</title>
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-4.6.1-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="mine/css/me.css">
+    <script src="mine/js/me.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h1><a id="appName" href="/">product management</a></h1>
+    </div>
+    <div class="topBar d-flex justify-content-between">
+        <div>
+            <button type="button"
+                    data-toggle="modal"
+                    data-target="#modalSave"
+                    class="add"
+            >add new one
+            </button>
+        </div>
+        <div>
+            <form>
+                <label><input name="name" placeholder="name" th:value="${name}"></label>
+                <label><input name="price" placeholder="price" th:value="${price}"></label>
+                <label><input name="expiration" placeholder="expiration" th:value="${expiration}"></label>
+                <label>
+                    <select name="category_id">
+                        <option th:value="${null}">category</option>
+                        <option th:each="c:${categoryList}"
+                                th:text="${c.name}"
+                                th:value="${c.id}">
+                        </option>
+                    </select>
+                </label>
+                <input id="getCateId" th:value="${category_id}" type="hidden">
+                <button id="btnSearch" type="submit">search</button>
+            </form>
+        </div>
+    </div>
+    <div class="tableOfContents">
+        <table class="table table-hover table-bordered">
+            <thead>
+            <tr class="bg-light text-dark">
+                <th>no</th>
+                <th class="sortName">
+                    <div class="d-flex justify-content-between">
+                        name
+                        <a th:href="'?page=' + ${productList.getNumber() + 1} + '&sort=name,'+ ${reverseSort}"><i class="fa-solid fa-sort mt-1"></i></a>
+                    </div>
+                </th>
+                <th class="sortPrice">
+                    <div class="d-flex justify-content-between">
+                        price
+                        <a th:href="'?page=' + ${productList.getNumber() + 1} + '&sort=price,'+ ${reverseSort}"><i class="fa-solid fa-sort mt-1"></i></a>
+                    </div>
+                </th>
+                <th class="sortExpiration">
+                    <div class="d-flex justify-content-between">
+                        expiration
+                        <a th:href="'?page=' + ${productList.getNumber() + 1} + '&sort=expiration,'+ ${reverseSort}"><i class="fa-solid fa-sort mt-1"></i></a>
+                    </div>
+                </th>
+                <th>category</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p,status:${productList}">
+                <td th:text="${status.count}"></td>
+                <td th:text="${p.name}"></td>
+                <td th:text="${p.price}"></td>
+                <td th:text="${p.expiration}"></td>
+                <td th:text="${p.category.name}"></td>
+                <td>
+                    <button type="button"
+                            data-target="#modalSave"
+                            data-toggle="modal"
+                            class="edit"
+                            th:data-id="${p.id}"
+                            th:data-name="${p.name}"
+                            th:data-price="${p.price}"
+                            th:data-expiration="${p.expiration}"
+                            th:data-category="${p.category.id}"
+                    >edit
+                    </button>
+                    <button type="button"
+                            class="delete"
+                            th:data-id="${p.id}"
+                            th:data-name="${p.name}"
+                            data-toggle="modal"
+                            data-target="#modalDelete"
+                    >delete
+                    </button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="d-flex justify-content-end" th:if="${productList.getTotalPages() > 0}">
+        <nav>
+            <ul class="pagination">
+
+                <li class="page-item" th:classappend="${!productList.hasPrevious()} ? 'disabled'">
+                    <a class="page-link" th:if="${name==''&&price==''&&expiration==''&&category_id==''}"
+                       th:href="'?page=' + ${productList.getNumber()} + '&sort='+ ${sort}">Previous
+                    </a>
+                    <a class="page-link" th:if="${name!=''||price!=''||expiration!=''||category_id!=''}"
+                       th:href="'?page=' + ${productList.getNumber()} + '&name=' +${name}+ '&price=' +${price}+ '&expiration=' + ${expiration} +'&category_id='+ ${category_id}">Previous
+                    </a>
+                </li>
+
+                <li class="page-item" th:each="i : ${#numbers.sequence(1, productList.getTotalPages())}"
+                    th:classappend="${i == productList.getNumber() + 1} ? 'active' : ''">
+                    <a class="page-link" th:if="${name==''&&price==''&&expiration==''&&category_id==''}"
+                       th:text="${i}" th:href="'?page=' + ${i} + '&sort='+ ${sort}">
+                    </a>
+                    <a class="page-link" th:if="${name!=''||price!=''||expiration!=''||category_id!=''}"
+                       th:text="${i}"
+                       th:href="'?page=' + ${i} + '&name=' +${name}+ '&price=' +${price}+ '&expiration=' + ${expiration} +'&category_id='+ ${category_id}">
+                    </a>
+                </li>
+
+                <li class="page-item" th:classappend="${!productList.hasNext()} ? 'disabled'">
+                    <a class="page-link" th:if="${name==''&&price==''&&expiration==''&&category_id==''}"
+                       th:href="'?page=' + ${productList.getNumber() + 2} + '&sort='+ ${sort}">Next
+                    </a>
+                    <a class="page-link" th:if="${name!=''||price!=''||expiration!=''||category_id!=''}"
+                       th:href="'?page=' + ${productList.getNumber() + 2} + '&name=' +${name}+ '&price=' +${price}+ '&expiration=' + ${expiration} +'&category_id='+ ${category_id}">Next
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+</body>
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">are you sure to delete?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/delete" method="post">
+                <div class="modal-body">
+                    <input id="id_delete" name="id" type="hidden">
+                    <h4 class="nameDel"></h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" data-dismiss="modal">close</button>
+                    <button type="submit">save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">save information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="saveFormId" action="/save" method="post" th:object="${product}">
+                    <script th:inline="javascript"
+                            th:if="${#fields.hasAnyErrors()}">
+                        $('#modalSave').modal('show')
+                    </script>
+                    <input type="hidden" th:field="*{id}">
+                    <table>
+                        <tr>
+                            <th>name</th>
+                            <td>
+                                <label> <input th:field="*{name}"> </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>price</th>
+                            <td>
+                                <label><input name="price"> </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('price')}" th:errors="*{price}">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>expiration</th>
+                            <td>
+                                <label><input type="date" th:field="*{expiration}"> </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <label style="font-style: italic;color: red"
+                                       th:if="${#fields.hasErrors('expiration')}"
+                                       th:errors="*{expiration}">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>category</th>
+                            <td>
+                                <label>
+                                    <select th:field="*{category}">
+                                        <option th:each="c:${categoryList}"
+                                                th:text="${c.name}"
+                                                th:value="${c.id}">
+                                        </option>
+                                    </select>
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="modal-footer">
+                        <button type="button" data-dismiss="modal">close</button>
+                        <button type="submit" id="saveBtn">save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</html>
