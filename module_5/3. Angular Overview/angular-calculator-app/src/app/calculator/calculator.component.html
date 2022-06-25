@@ -1,0 +1,13 @@
+<p>calculator works!</p>
+<input type="number" [(ngModel)]="num1" required>
+<button (click)="getOper('+')">+</button>
+<button (click)="getOper('-')">-</button>
+<button (click)="getOper('*')">*</button>
+<button (click)="getOper('/')">/</button>
+<input type="number" [(ngModel)]="num2" required>
+<button (click)="equal(num1,num2,ope)">=</button>
+<br>
+<span>{{num1}}</span>
+<span>{{ope}}</span>
+<span>{{num2}}</span>
+<span>{{result}}</span>
