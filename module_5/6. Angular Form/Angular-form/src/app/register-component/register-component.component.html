@@ -1,0 +1,44 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="email">email </label>
+    <input type="text" id="email" formControlName="email">
+  </p>
+
+  <p>
+    <label for="password">password </label>
+    <input type="text" id="password" name="lastname" formControlName="password">
+  </p>
+
+  <p>
+    <label for="confirmPassword">confirmPassword </label>
+    <input type="text" id="confirmPassword" formControlName="confirmPassword">
+  </p>
+
+  <p>
+    <label for="country">country </label>
+    <input type="text" id="country" formControlName="country">
+  </p>
+
+  <p>
+    <label for="age">age </label>
+    <input type="text" id="age" formControlName="age">
+  </p>
+
+
+  <p>
+    <label>gender </label>
+    <input type="radio" value="male" formControlName="gender"> Male
+    <input type="radio" value="female" formControlName="gender"> Female
+  </p>
+
+  <p>
+    <label for="phone">phone </label>
+    <input type="text" id="phone" formControlName="phone">
+  </p>
+
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+
+</form>
+<h4>{{temp}}</h4><br>

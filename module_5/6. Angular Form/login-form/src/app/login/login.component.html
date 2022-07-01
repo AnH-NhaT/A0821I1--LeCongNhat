@@ -1,0 +1,32 @@
+
+
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+  <p>
+    <label for="email">Email </label>
+    <input type="text" id="email" name="email" formControlName="email">
+  </p>
+
+  <div
+    *ngIf="!loginForm.controls.email?.valid && (loginForm.controls.email?.dirty
+    ||loginForm.controls.email?.touched)">
+    <span style="color: red">Email is not valid</span>
+  </div>
+
+  <p>
+    <label for="password">Password </label>
+    <input type="text" id="password" name="password" formControlName="password">
+  </p>
+
+  <div
+    *ngIf="!loginForm.controls.password?.valid && (loginForm.controls.password?.dirty
+    ||loginForm.controls.password?.touched)">
+    <span style="color: red">Password is not valid</span>
+  </div>
+
+  <p>
+    <button type="submit">Submit</button>
+  </p>
+
+</form>
+<h3>{{temp}}</h3>
