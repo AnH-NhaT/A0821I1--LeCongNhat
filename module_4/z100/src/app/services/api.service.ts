@@ -24,4 +24,8 @@ export class ApiService {
   delete(id: number) {
     return this.http.delete<any>('http://localhost:3000/list/' + id)
   }
+
+  getSub() {
+    return this.http.get<any>('http://localhost:3000/subList/')
+  }
 }

@@ -14,7 +14,7 @@ import {DialogComponent} from "../dialog/dialog.component";
 export class HomeComponent implements OnInit {
   title = 'z100';
 
-  displayedColumns: string[] = ['no', 'name', 'category', 'date', 'freshness', 'price', 'comment', 'action'];
+  displayedColumns: string[] = ['no', 'name', 'category', 'date', 'gender', 'price', 'comment', 'action'];
   dataSource!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
   }
 
   delete(id: number) {
-    if (confirm('are you sure?')) {
+    if (confirm('Are you sure?')) {
       this.api.delete(id)
         .subscribe({
           next: () => {

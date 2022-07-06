@@ -1,1 +1,16 @@
-<router-outlet></router-outlet>
+<div>
+  <div class="sticky-top header">
+    <mat-toolbar>
+        <div>
+          <span><a href="http://localhost:4200/welcome">Welcome&nbsp;&nbsp;&nbsp;</a></span>
+          <span><a href="http://localhost:4200/home">Home</a></span>
+        </div>
+    </mat-toolbar>
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <div class="fixed-bottom">
+    <mat-toolbar></mat-toolbar>
+  </div>
+</div>

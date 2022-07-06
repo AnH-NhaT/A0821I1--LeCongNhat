@@ -10,9 +10,11 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class DialogComponent implements OnInit {
 
-  freshness = ['aaa', 'bbb', 'ccc']
-  objectForm !: FormGroup
+  gender = ['male', 'female', 'other']
+  objectForm: any
   actionBtn: string = 'save';
+  formName: string = 'Adding From';
+  sub: any
 
   constructor(private formBuilder: FormBuilder, private api: ApiService,
               @Inject(MAT_DIALOG_DATA) public editData: any,
@@ -21,20 +23,25 @@ export class DialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.api.getSub().subscribe(data => {
+      this.sub = data
+    })
     this.objectForm = this.formBuilder.group({
       name: ['', Validators.required],
       category: ['', Validators.required],
       date: ['', Validators.required],
-      freshness: ['', Validators.required],
+      gender: ['', Validators.required],
       price: ['', Validators.required],
       comment: ['', Validators.required]
     })
+
     if (this.editData) {
       this.actionBtn = 'update'
+      this.formName = 'Updating Form'
       this.objectForm.controls['name'].setValue(this.editData.name)
       this.objectForm.controls['category'].setValue(this.editData.category)
       this.objectForm.controls['date'].setValue(this.editData.date)
-      this.objectForm.controls['freshness'].setValue(this.editData.freshness)
+      this.objectForm.controls['gender'].setValue(this.editData.gender)
       this.objectForm.controls['price'].setValue(this.editData.price)
       this.objectForm.controls['comment'].setValue(this.editData.comment)
     }
@@ -43,7 +50,7 @@ export class DialogComponent implements OnInit {
   add() {
     if (!this.editData) {
       if (this.objectForm.valid) {
-        if (confirm('are you sure?')) {
+        if (confirm('Are you sure?')) {
           this.api.post(this.objectForm.value)
             .subscribe({
               next: () => {
@@ -64,7 +71,7 @@ export class DialogComponent implements OnInit {
 
   edit() {
     if (this.objectForm.valid) {
-      if (confirm('are you sure?')) {
+      if (confirm('Are you sure?')) {
         this.api.put(this.objectForm.value, this.editData.id)
           .subscribe({
             next: () => {

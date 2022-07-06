@@ -1,5 +1,6 @@
-<h1 mat-dialog-title>Add Form</h1>
-
+<div class="d-flex justify-content-center text-success">
+  <h1 mat-dialog-title>{{formName}}</h1>
+</div>
 <div mat-dialog-content>
   <form [formGroup]="objectForm">
 
@@ -11,9 +12,9 @@
     <mat-form-field appearance="outline">
       <mat-label>Category</mat-label>
       <mat-select formControlName="category">
-        <mat-option value="123">123</mat-option>
-        <mat-option value="456">456</mat-option>
-        <mat-option value="789">789</mat-option>
+        <mat-option *ngFor="let i of sub" [value]="i.name">
+          {{i.name}}
+        </mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -24,14 +25,12 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
-    <label>
-      <h1>Freshness</h1>
-    </label>
-    <mat-radio-group formControlName="freshness"
+    <label style="font-weight: bold">Gender</label>
+    <mat-radio-group formControlName="gender"
                      aria-labelledby="example-radio-group-label"
                      class="example-radio-group">
-      <mat-radio-button class="example-radio-button" *ngFor="let fresh of freshness" [value]="fresh">
-        {{fresh}}
+      <mat-radio-button class="example-radio-button" *ngFor="let ele of gender" [value]="ele">
+        {{ele}}
       </mat-radio-button>
     </mat-radio-group>
 
@@ -50,5 +49,8 @@
 
 <div mat-dialog-actions [align]="'end'">
   <button mat-raised-button color="warn" mat-dialog-close="">close</button>
-  <button mat-raised-button color="primary" (click)="add()">{{actionBtn}}</button>
+  <button mat-raised-button color="primary"
+          [disabled]="objectForm.invalid"
+          (click)="add()">{{actionBtn}}
+  </button>
 </div>

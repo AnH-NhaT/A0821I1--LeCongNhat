@@ -6,8 +6,21 @@ th {
 
 .filter {
   font-size: 15px;
+  width: 100px;
 }
 
 .header {
   height: 70px;
+}
+
+#filter-div {
+  position: fixed;
+  top: 220px;
+  right: 8px;
+}
+
+#add-div {
+  position: fixed;
+  top: 320px;
+  right: 30px;
 }

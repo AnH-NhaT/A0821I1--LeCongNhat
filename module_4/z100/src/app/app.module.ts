@@ -8,13 +8,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from '@angular/common/http';
 import {MaterialModule} from "./modules/material.module";
 import { HomeComponent } from './components/home/home.component';
+import { WelcomeComponent } from './components/welcome/welcome.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
-    HomeComponent
+    HomeComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,
