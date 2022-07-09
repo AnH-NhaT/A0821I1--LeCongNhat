@@ -15,193 +15,79 @@
   ],
   "list": [
     {
-      "name": "nhat",
+      "name": "12",
       "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 2200,
-      "comment": "2200",
+      "date": "2022-07-18T17:00:00.000Z",
+      "gender": "female",
+      "hobby": {
+        "Banana": false,
+        "Apple": true,
+        "Beer": true,
+        "Water": false
+      },
+      "price": 12,
+      "comment": "12",
       "id": 1
     },
     {
-      "name": "haiTT",
-      "category": "name 1",
-      "date": "2022-07-04T17:00:00.000Z",
-      "gender": "other",
-      "price": 234,
-      "comment": "234",
-      "id": 2
-    },
-    {
-      "name": "binh",
-      "category": "name 1",
-      "date": "2022-07-08T17:00:00.000Z",
-      "gender": "other",
-      "price": 123,
-      "comment": "321",
-      "id": 4
-    },
-    {
-      "name": "thuan",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "female",
-      "price": 34,
-      "comment": "34",
-      "id": 5
-    },
-    {
-      "name": "chien",
-      "category": "name 2",
-      "date": "2022-07-05T17:00:00.000Z",
-      "gender": "male",
-      "price": 1212,
-      "comment": "1212",
-      "id": 6
-    },
-    {
-      "name": "trung",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 23232,
-      "comment": "2343",
-      "id": 7
-    },
-    {
-      "name": "than",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 23232,
-      "comment": "58686",
-      "id": 8
-    },
-    {
-      "name": "thanh",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 23232,
-      "comment": "434",
-      "id": 9
-    },
-    {
-      "name": "trung",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 23232,
-      "comment": "3434343",
-      "id": 10
-    },
-    {
-      "name": "trung",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 23232,
-      "comment": "1000",
-      "id": 11
-    },
-    {
-      "name": "thuan",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "female",
-      "price": 34,
-      "comment": "34",
-      "id": 12
-    },
-    {
-      "name": "toan",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "female",
-      "price": 34,
-      "comment": "34",
-      "id": 13
-    },
-    {
-      "name": "thuan",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "female",
-      "price": 34,
-      "comment": "34",
-      "id": 14
-    },
-    {
-      "name": "thuan",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "female",
-      "price": 34,
-      "comment": "34",
-      "id": 15
-    },
-    {
-      "name": "thuan",
-      "category": "name 2",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "female",
-      "price": 34,
-      "comment": "34",
-      "id": 16
-    },
-    {
-      "name": "anh",
-      "category": "name 1",
-      "date": "2022-07-14T17:00:00.000Z",
-      "gender": "male",
-      "price": 12,
-      "comment": "12",
-      "id": 17
-    },
-    {
-      "name": "thuy tien",
-      "category": "name 1",
-      "date": "2022-07-26T17:00:00.000Z",
-      "gender": "male",
-      "price": 23,
-      "comment": "23",
-      "id": 18
-    },
-    {
-      "name": "cong",
+      "name": "15",
       "category": "name 3",
       "date": "2022-07-13T17:00:00.000Z",
       "gender": "male",
-      "price": 23,
-      "comment": "23",
-      "id": 19
+      "hobby": {
+        "Banana": false,
+        "Apple": false,
+        "Beer": true,
+        "Water": false
+      },
+      "price": 15,
+      "comment": "15",
+      "id": 4
+    },
+    {
+      "name": "111",
+      "category": "name 3",
+      "date": "2022-07-19T17:00:00.000Z",
+      "gender": "female",
+      "hobby": {
+        "Banana": false,
+        "Apple": false,
+        "Beer": true,
+        "Water": false
+      },
+      "price": 1213,
+      "comment": "23343",
+      "id": 5
     },
     {
       "name": "linh",
       "category": "name 2",
       "date": "2022-07-27T17:00:00.000Z",
-      "gender": "male",
-      "price": 23,
-      "comment": "23",
-      "id": 20
+      "gender": "female",
+      "hobby": {
+        "Banana": true,
+        "Apple": false,
+        "Beer": false,
+        "Water": true
+      },
+      "price": 2345,
+      "comment": "2345",
+      "id": 6
     },
     {
-      "name": "anhnhat",
-      "category": "name 3",
-      "date": "2022-07-06T17:00:00.000Z",
-      "gender": "male",
-      "price": 34343,
-      "comment": "343434",
-      "id": 21
-    },
-    {
-      "name": "quyet",
-      "category": "name 3",
-      "date": "2022-07-20T17:00:00.000Z",
-      "gender": "male",
-      "price": 1234,
-      "comment": "4321",
-      "id": 22
+      "name": "12qw",
+      "category": "name 2",
+      "date": "2022-07-26T17:00:00.000Z",
+      "gender": "female",
+      "hobby": {
+        "Banana": false,
+        "Apple": true,
+        "Beer": false,
+        "Water": false
+      },
+      "price": 12,
+      "comment": "12",
+      "id": 7
     }
   ]
 }

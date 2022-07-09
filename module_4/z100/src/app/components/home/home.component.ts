@@ -14,8 +14,9 @@ import {DialogComponent} from "../dialog/dialog.component";
 export class HomeComponent implements OnInit {
   title = 'z100';
 
-  displayedColumns: string[] = ['no', 'name', 'category', 'date', 'gender', 'price', 'comment', 'action'];
+  displayedColumns: string[] = ['no', 'name', 'category', 'date', 'gender', 'hobby', 'price', 'comment', 'action'];
   dataSource!: MatTableDataSource<any>;
+  hobbyArray: string[] = []
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -43,6 +44,16 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  showHobby(index: number) {
+    this.hobbyArray = []
+    for (const key of Object.keys(this.dataSource.filteredData[index].hobby)) {
+      const value = this.dataSource.filteredData[index].hobby[key];
+      if (value == true)
+        this.hobbyArray.push(' ' + key)
+    }
+    return this.hobbyArray
+  }
+
   ngOnInit(): void {
     this.getAll()
   }
@@ -51,7 +62,6 @@ export class HomeComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }

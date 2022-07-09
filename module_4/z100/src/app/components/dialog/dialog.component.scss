@@ -1,16 +1,11 @@
-mat-form-field{
+mat-form-field {
   width: 100%;
 }
-.example-radio-group {
-  display: flex;
-  flex-direction: column;
-  margin: 15px 0;
-  align-items: flex-start;
+
+.mat-dialog-content {
+  height: 350px;
 }
 
-.example-radio-button {
-  margin: 5px;
-}
-.mat-dialog-content{
-  height: 350px;
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
 }

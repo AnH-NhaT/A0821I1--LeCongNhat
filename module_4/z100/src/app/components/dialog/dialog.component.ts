@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ApiService} from "../../services/api.service";
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-dialog',
@@ -13,8 +13,9 @@ export class DialogComponent implements OnInit {
   gender = ['male', 'female', 'other']
   objectForm: any
   actionBtn: string = 'save';
-  formName: string = 'Adding From';
+  formName: string = 'Adding From'
   sub: any
+  items: string[] = ['Banana', 'Apple', 'Beer', 'Water']
 
   constructor(private formBuilder: FormBuilder, private api: ApiService,
               @Inject(MAT_DIALOG_DATA) public editData: any,
@@ -30,9 +31,13 @@ export class DialogComponent implements OnInit {
       name: ['', Validators.required],
       category: ['', Validators.required],
       date: ['', Validators.required],
-      gender: ['', Validators.required],
+      gender: ['male'],
+      hobby: new FormGroup({}),
       price: ['', Validators.required],
       comment: ['', Validators.required]
+    })
+    this.items.forEach(item => {
+      this.objectForm.get('hobby').addControl(item, new FormControl(false));
     })
 
     if (this.editData) {
@@ -42,6 +47,7 @@ export class DialogComponent implements OnInit {
       this.objectForm.controls['category'].setValue(this.editData.category)
       this.objectForm.controls['date'].setValue(this.editData.date)
       this.objectForm.controls['gender'].setValue(this.editData.gender)
+      this.objectForm.controls['hobby'].setValue(this.editData.hobby)
       this.objectForm.controls['price'].setValue(this.editData.price)
       this.objectForm.controls['comment'].setValue(this.editData.comment)
     }

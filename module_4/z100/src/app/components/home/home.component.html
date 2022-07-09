@@ -47,6 +47,12 @@
       </ng-container>
 
       <!-- Column -->
+      <ng-container matColumnDef="hobby">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header=""> hobby</th>
+        <td mat-cell *matCellDef="let row; let i = index"> {{showHobby(i).length > 0 ? showHobby(i) : 'none'}} </td>
+      </ng-container>
+
+      <!-- Column -->
       <ng-container matColumnDef="price">
         <th mat-header-cell *matHeaderCellDef mat-sort-header=""> price</th>
         <td mat-cell *matCellDef="let row"> {{row.price | currency:'USD'}} </td>
