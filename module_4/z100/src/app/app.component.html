@@ -1,10 +1,10 @@
 <div>
   <div class="sticky-top header">
     <mat-toolbar>
-        <div>
-          <span><a href="http://localhost:4200/welcome">Welcome&nbsp;&nbsp;&nbsp;</a></span>
-          <span><a href="http://localhost:4200/home">Home</a></span>
-        </div>
+      <div>
+        <span class="hover-pointer" routerLink="/welcome">Welcome&nbsp;&nbsp;&nbsp;</span>
+        <span class="hover-pointer" routerLink="/home">Home</span>
+      </div>
     </mat-toolbar>
   </div>
 
@@ -14,3 +14,8 @@
     <mat-toolbar></mat-toolbar>
   </div>
 </div>
+<style>
+  .hover-pointer:hover {
+    cursor: pointer;
+  }
+</style>

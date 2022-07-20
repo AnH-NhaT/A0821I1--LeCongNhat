@@ -88,6 +88,21 @@
       "price": 12,
       "comment": "12",
       "id": 7
+    },
+    {
+      "name": "hello",
+      "category": "name 2",
+      "date": "2022-07-28T17:00:00.000Z",
+      "gender": "other",
+      "hobby": {
+        "Banana": false,
+        "Apple": true,
+        "Beer": true,
+        "Water": false
+      },
+      "price": 5656,
+      "comment": "qwe",
+      "id": 8
     }
   ]
 }
