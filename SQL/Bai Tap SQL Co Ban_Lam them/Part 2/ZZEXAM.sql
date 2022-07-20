@@ -1,0 +1,313 @@
+
+CREATE DATABASE ZZEXAM
+
+USE ZZEXAM
+
+CREATE TABLE [BLOCK](
+MaBL nchar(12) PRIMARY KEY,
+TenBL nvarchar(50),
+DiaChi nvarchar(50),
+)
+
+CREATE TABLE CANHO(
+MaCH nchar(12) PRIMARY KEY,
+MaBL nchar(12) FOREIGN KEY REFERENCES [BLOCK](MaBL),
+Tang int,
+DienTich int,
+LoaiCH nchar(12)
+)
+
+CREATE TABLE CUDAN(
+MaCD nchar(12) PRIMARY KEY,
+MaCH nchar(12) FOREIGN KEY REFERENCES CANHO(MaCH),
+HoVaTen nvarchar(50),
+GioiTinh bit,
+SoDienThoai nchar(12),
+SoCMMD nchar(12),
+NgaySinh date,
+NoiSinh nvarchar(50)
+)
+
+CREATE TABLE LOAIPHI(
+MaPhi nchar(12) PRIMARY KEY,
+TenPhi nvarchar(50),
+DonGia float,
+DVT nchar(12)
+)
+
+CREATE TABLE LSDONGPHI(
+MaDP nchar(12) PRIMARY KEY,
+MaCH nchar(12) FOREIGN KEY REFERENCES CANHO(MaCH),
+MaPhi nchar(12) FOREIGN KEY REFERENCES LOAIPHI(MaPhi),
+SoLuong int,
+NgayDP date,
+GhiChu nvarchar(50)
+)
+
+
+INSERT INTO BLOCK VALUES
+('BLA', 'Block A', '05 Ho Sy Tan'),
+('BLB', 'Block B', '01 Duong Lam'),
+('BLC', 'Block C', '22 Pham Huy Thong')
+SELECT * FROM BLOCK
+
+
+INSERT INTO CANHO VALUES
+('A501', 'BLA', 5, 68, '3PN'),
+('B105', 'BLB', 1, 54, '2PN'),
+('A508', 'BLA', 5, 68, '3PN'),
+('B404', 'BLB', 4, 54, '2PN'),
+('C303', 'BLc', 3, 54, '2PN'),
+('C203', 'BLC', 2, 54, '2PN')
+SELECT * FROM CANHO
+
+
+INSERT INTO CUDAN VALUES
+('CD001', 'A501', 'Trinh Dinh Hau', 1, '0456397237', '034583468', '11/15/1982', 'Ha Noi'),
+('CD002', 'A501', 'Trinh Dinh Hau', 0, '0456397266', '034583422', '11/15/1952', 'Quang Nam'),
+('CD003', 'B404', 'Trinh Dinh Hau', 0, '0456397277', '034583433', '11/15/1972', 'Ha Noi'),
+('CD004', 'B404', 'Trinh Dinh Hau', 1, '0456397288', '034583444', '11/15/1992', 'Da Nang'),
+('CD005', 'C203', 'Trinh Dinh Hau', 0, '0456397299', '034583455', '11/15/1962', 'Ha Noi'),
+('CD006', 'C203', 'Trinh Dinh Hau', 1, '0456397255', '034583466', '11/15/1942', 'Ha Noi'),
+('CD007', 'B404', 'Trinh Dinh Hau 1', 1, '0456397289', '034583464', '11/15/1962', 'Da Nang'),
+
+('CD008', 'B105', 'Trinh Dinh Hau', 1, '0456397255', '034583466', '11/15/1942', 'Ha Noi'),
+('CD009', 'A508', 'Trinh Dinh Hau', 1, '0456397255', '034583466', '11/15/1942', 'Ha Noi'),
+('CD010', 'C303', 'Trinh Dinh Hau', 1, '0456397255', '034583466', '11/15/1942', 'Ha Noi')
+
+SELECT * FROM CUDAN
+
+
+INSERT INTO LSDONGPHI VALUES
+('DP001', 'A501', 'MP01', 1, '5/10/2021', 'Dong phi thang'),
+('DP002', 'A501', 'MP02', 2, '7/10/2021', 'Dong phi thang'),
+('DP003', 'B404', 'MP01', 1, '7/10/2022', 'Dong phi thang'),
+('DP004', 'B105', 'MP02', 2, '8/10/2022', 'Dong phi thang'),
+('DP005', 'B404', 'MP03', 2, '7/10/2022', 'Dong phi thang')
+SELECT * FROM LSDONGPHI
+
+
+INSERT INTO LOAIPHI VALUES
+('MP01', 'Phi QL Chung cu', 200000, 'Thang'),
+('MP02', 'Phi QL Chung cu', 10000, 'Thang'),
+('MP03', 'Phi QL Chung cu', 20000, 'Lan'),
+('MP04', 'Phi QL Chung cu', 15000, 'Thang')
+SELECT * FROM LOAIPHI
+
+
+TRUNCATE TABLE [BLOCK]
+TRUNCATE TABLE CANHO
+TRUNCATE TABLE CUDAN
+TRUNCATE TABLE LSDONGPHI
+TRUNCATE TABLE LOAIPHI
+
+--3
+SELECT CH.MaCH, BL.TenBL, CH.Tang, CH.DienTich
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+WHERE CH.LoaiCH = '3PN'
+
+--4
+SELECT LP.MaPhi, LP.TenPhi, LP.DonGia, DVT
+FROM LOAIPHI AS LP
+FULL JOIN LSDONGPHI AS LSD
+ON LSD.MaPhi = LP.MaPhi
+FULL JOIN CANHO AS CH
+ON CH.MaCH = LSD.MaCH
+WHERE LSD.MaCH IS NULL AND LP.MaPhi IS NOT NULL
+
+--5
+SELECT CH.MaCH, BL.TenBL, CH.LoaiCH, LSD.SoLuong
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+JOIN LSDONGPHI AS LSD
+ON LSD.MaCH = CH.MaCH
+JOIN LOAIPHI AS LP
+ON LP.MaPhi = LSD.MaPhi
+GROUP BY CH.MaCH, BL.TenBL, CH.LoaiCH, LSD.SoLuong
+
+--6
+SELECT CH.MaCH, BL.TenBL, CH.LoaiCH, CD.MaCD, CD.HoVaTen, CD.NoiSinh
+FROM CUDAN AS CD
+JOIN CANHO AS CH
+ON CD.MaCH = CH.MaCH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+WHERE CH.MaCH IN (
+SELECT CD.MaCH
+FROM CUDAN AS CD
+JOIN CANHO CH
+ON CH.MaCH = CD.MaCH
+GROUP BY CD.MaCH
+HAVING  COUNT(CD.MaCH) > 2
+)
+
+--7
+SELECT CH.MaCH, BL.MaBL, BL.TenBL, CH.Tang, (LSD.SoLuong * LP.DonGia) AS TongChiPhi
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+JOIN LSDONGPHI AS LSD
+ON LSD.MaCH = CH.MaCH
+JOIN LOAIPHI AS LP
+ON LP.MaPhi = LSD.MaPhi
+WHERE LSD.NgayDP BETWEEN '2022-07-01' AND '2022-07-31'
+
+--8
+SELECT CH.MaCH, BL.TenBL, CH.Tang, CD.HoVaTen, CD.SoDienThoai
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+JOIN CUDAN AS CD
+ON CD.MaCH = CH.MaCH
+WHERE CH.MaCH NOT IN(
+
+SELECT CH.MaCH
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+JOIN LSDONGPHI AS LSD
+ON LSD.MaCH = CH.MaCH
+JOIN LOAIPHI AS LP
+ON LP.MaPhi = LSD.MaPhi
+)
+
+--11
+SELECT TOP 5
+CH.MaCH, BL.TenBL, CH.Tang, (LSD.SoLuong * LP.DonGia) AS TongChiPhi
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+JOIN LSDONGPHI AS LSD
+ON LSD.MaCH = CH.MaCH
+JOIN LOAIPHI AS LP
+ON LP.MaPhi = LSD.MaPhi
+ORDER BY (LSD.SoLuong * LP.DonGia) DESC
+
+
+--12
+SELECT CH.MaCH
+FROM CUDAN AS CD
+JOIN CANHO AS CH
+ON CH.MaCH = CD.MaCH
+WHERE (YEAR(GETDATE()) - YEAR(CD.NgaySinh)) < 35
+
+--13
+UPDATE LOAIPHI
+SET DonGia = DonGia * 95 /100
+FROM CANHO AS CH
+JOIN BLOCK AS BL
+ON BL.MaBL = CH.MaBL
+JOIN LSDONGPHI AS LSD
+ON LSD.MaCH = CH.MaCH
+JOIN LOAIPHI AS LP
+ON LP.MaPhi = LSD.MaPhi
+WHERE CH.MaCH IN(
+SELECT CH.MaCH
+FROM CUDAN AS CD
+JOIN CANHO AS CH
+ON CH.MaCH = CD.MaCH
+JOIN LSDONGPHI AS LSD
+ON LSD.MaCH = CH.MaCH
+WHERE (YEAR(GETDATE()) - YEAR(CD.NgaySinh)) > 70
+AND LSD.NgayDP BETWEEN '2022-08-01' AND '2022-08-31'
+)
+SELECT * FROM LOAIPHI
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- AVG()
+-- LOWER()
+-- UPPER()
+-- FLOOR(25.75) = 25
+-- CEILING(25.75) = 26
+-- ROUND(235.415, 2) = 235.420
+-- ROUND(235.415, 1) = 235.400
+-- TRIM()
+-- REVERSE()
+-- DAY()
+-- MONTH()
+
+-- ALTER
+
+--ALTER TABLE Customers
+--ADD Email varchar(255);
+
+--ALTER TABLE Customers
+--DROP COLUMN Email;
+
+--ALTER TABLE Persons
+--ALTER COLUMN DateOfBirth year;
+
+-- Naming foreign key
+
+--CREATE TABLE Orders (
+--    OrderID int NOT NULL,
+--    OrderNumber int NOT NULL,
+--    PersonID int,
+--    PRIMARY KEY (OrderID),
+--    CONSTRAINT FK_PersonOrder FOREIGN KEY (PersonID)
+--    REFERENCES Persons(PersonID)
+--);
+
+--ALTER TABLE Orders
+--ADD FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+--ALTER TABLE Orders
+--ADD CONSTRAINT FK_PersonOrder
+--FOREIGN KEY (PersonID) REFERENCES Persons(PersonID);
+
+--ALTER TABLE Orders
+--DROP CONSTRAINT FK_PersonOrder;
+
+
+
+
