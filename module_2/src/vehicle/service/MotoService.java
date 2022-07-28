@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MotoService {
-    private static final String PATH = "src/vehicle/data/Moto.csv";
+    private static final String PATH = "src/vehicle/data/One.csv";
     private static final String COMMA = ",";
-    private static final String FIRST_LINE = "Biển kiểm soát,Hãng sản xuất,Năm sản xuất,Chủ sở hữu,Công suất";
+    private final String FIELD_NAME = "Biển kiểm soát,Hãng sản xuất,Năm sản xuất,Chủ sở hữu,Kiểu xe,Số chỗ ngồi,Công suất,Tải trọng";
 
     List<Moto> motoList = scanFile();
 
@@ -37,8 +37,10 @@ public class MotoService {
                 COMMA + moto.getTenHangSx() +
                 COMMA + moto.getNamSx() +
                 COMMA + moto.getChuSoHuu() +
-                COMMA + moto.getCongSuat();
-        FileProcessing.writeFile(PATH, line, FIRST_LINE);
+                COMMA + "" + COMMA + "" +
+                COMMA + moto.getCongSuat() +
+                COMMA + "";
+        FileProcessing.writeFile(PATH, line, FIELD_NAME);
         motoList.add(moto);
     }
 
@@ -50,7 +52,7 @@ public class MotoService {
                     COMMA + moto.getNamSx() +
                     COMMA + moto.getChuSoHuu() +
                     COMMA + moto.getCongSuat();
-            FileProcessing.writeFile(PATH, line, FIRST_LINE);
+            FileProcessing.writeFile(PATH, line, FIELD_NAME);
         }
     }
 

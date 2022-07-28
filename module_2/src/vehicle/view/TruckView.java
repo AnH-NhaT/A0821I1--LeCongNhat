@@ -17,13 +17,10 @@ public class TruckView {
         Truck truck = new Truck();
 
         String plate;
-        do {
-            System.out.print("Biển kiểm soát: ");
-            plate = scanner.nextLine();
-            if (Validation.validateTruck(plate) && !OtherServices.isExistAll(plate)) break;
-            else if (plate.equals("")) return;
-            else System.out.println("InputNotValid! OR Duplicated!");
-        } while (true);
+
+        System.out.print("Biển kiểm soát: ");
+        plate = scanner.nextLine();
+
         truck.setBienKiemSoat(plate);
         OtherServices.showBrand();
 
@@ -56,13 +53,10 @@ public class TruckView {
 
     void update(Truck truck) {
         String plate;
-        do {
-            System.out.print("Biển kiểm soát: ");
-            plate = scanner.nextLine();
-            if (Validation.validateTruck(plate) && !OtherServices.isExistAll(plate)) break;
-            else if (plate.equals("")) return;
-            else System.out.println("InputNotValid! OR Duplicated!");
-        } while (true);
+
+        System.out.print("Biển kiểm soát: ");
+        plate = scanner.nextLine();
+
         truck.setBienKiemSoat(plate);
         OtherServices.showBrand();
 

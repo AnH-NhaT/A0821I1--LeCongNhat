@@ -10,10 +10,6 @@ import java.util.List;
 public class OtherServices {
     private static final String PATH = "src/vehicle/data/Brand.csv";
 
-    static CarService carService = new CarService();
-    static TruckService truckService = new TruckService();
-    static MotoService motoService = new MotoService();
-
     private static List<String> getBrand() {
         return FileProcessing.readFile(PATH);
     }
@@ -40,28 +36,5 @@ public class OtherServices {
 
         return result;
     }
-
-    public static boolean isExistAll(String plate) {
-        for (Car car : carService.getAll()) {
-            if (car.getBienKiemSoat().equals(plate)) return true;
-        }
-        for (Truck truck : truckService.getAll()) {
-            if (truck.getBienKiemSoat().equals(plate)) return true;
-        }
-        for (Moto moto : motoService.getAll()) {
-            if (moto.getBienKiemSoat().equals(plate)) return true;
-        }
-        return false;
-    }
-
-    public static void deleteAll(String plate) {
-        if (carService.getAll().removeIf(e -> e.getBienKiemSoat().equals(plate)))
-            carService.rewrite();
-        else if (truckService.getAll().removeIf(e -> e.getBienKiemSoat().equals(plate)))
-            truckService.rewrite();
-        else if (motoService.getAll().removeIf(e -> e.getBienKiemSoat().equals(plate)))
-            motoService.rewrite();
-    }
-
 
 }

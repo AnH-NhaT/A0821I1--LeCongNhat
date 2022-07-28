@@ -2,80 +2,75 @@ package vehicle.service;
 
 import vehicle.common.FileProcessing;
 import vehicle.model.Car;
+import vehicle.model.Moto;
+import vehicle.model.Truck;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarService {
-    private static final String PATH = "src/vehicle/data/Car.csv";
-    private static final String COMMA = ",";
-    private static final String FIRST_LINE = "Biển kiểm soát,Hãng sản xuất,Năm sản xuất,Chủ sở hữu,Kiểu xe,Số chỗ ngồi";
+    private final String PATH = "src/vehicle/data/One.csv";
+    private final String COMMA = ",";
+    private final String FIELD_NAME = "Biển kiểm soát,Hãng sản xuất,Năm sản xuất,Chủ sở hữu,Kiểu xe,Số chỗ ngồi,Công suất,Tải trọng";
 
-    List<Car> carList = scanFile();
-
-    private List<Car> scanFile() {
-        List<String> listLine = FileProcessing.readFile(PATH);
+    public List<String> getAll() {
         String[] lineSplit;
-        List<Car> list = new ArrayList<>();
-        for (String s : listLine) {
-            Car carFile = new Car();
-            lineSplit = s.split(COMMA);
-            if (lineSplit.length == 6) {
-                carFile.setBienKiemSoat(lineSplit[0]);
-                carFile.setTenHangSx(lineSplit[1]);
-                carFile.setNamSx(Integer.parseInt(lineSplit[2]));
-                carFile.setChuSoHuu(lineSplit[3]);
-                carFile.setKieuXe(lineSplit[4]);
-                carFile.setSoChoNgoi(Integer.parseInt(lineSplit[5]));
-                list.add(carFile);
+        List<String> res = new ArrayList<>();
+        for (String s : FileProcessing.readFile(PATH)) {
+            lineSplit = s.split(COMMA, -1);
+            if (lineSplit.length == 8) {
+                res.add(
+                        "BienKiemSoat= " + lineSplit[0] +
+                                " | TenHangSx= " + lineSplit[1] +
+                                " | NamSx= " + lineSplit[2] +
+                                " | ChuSoHuu= " + lineSplit[3] +
+                                (!lineSplit[4].equals("") ? " | KieuXe= " + lineSplit[4] : "") +
+                                (!lineSplit[5].equals("") ? " | SoChoNgoi= " + lineSplit[5] : "") +
+                                (!lineSplit[6].equals("") ? " | CongSuat= " + lineSplit[6] : "") +
+                                (!lineSplit[7].equals("") ? " | TaiTrong= " + lineSplit[7] : "")
+                );
             }
         }
-        return list;
+        return res;
     }
 
-    public void add(Car car) {
-        String line = car.getBienKiemSoat() +
-                COMMA + car.getTenHangSx() +
-                COMMA + car.getNamSx() +
-                COMMA + car.getChuSoHuu() +
-                COMMA + car.getKieuXe() +
-                COMMA + car.getSoChoNgoi();
-        FileProcessing.writeFile(PATH, line, FIRST_LINE);
-        carList.add(car);
+
+    public void addACar(Car object) {
+        String line = object.getBienKiemSoat() +
+                COMMA + object.getTenHangSx() +
+                COMMA + object.getNamSx() +
+                COMMA + object.getChuSoHuu() +
+                COMMA + object.getKieuXe() +
+                COMMA + object.getSoChoNgoi() +
+                COMMA + "" + COMMA + "";
+
+        FileProcessing.writeFile(PATH, line, FIELD_NAME);
     }
 
-    public void rewrite() {
-        FileProcessing.emptyFile(PATH);
-        for (Car car : carList) {
-            String line = car.getBienKiemSoat() +
-                    COMMA + car.getTenHangSx() +
-                    COMMA + car.getNamSx() +
-                    COMMA + car.getChuSoHuu() +
-                    COMMA + car.getKieuXe() +
-                    COMMA + car.getSoChoNgoi();
-            FileProcessing.writeFile(PATH, line, FIRST_LINE);
-        }
+    public void addAMoto(Moto object) {
+        String line = object.getBienKiemSoat() +
+                COMMA + object.getTenHangSx() +
+                COMMA + object.getNamSx() +
+                COMMA + object.getChuSoHuu() +
+
+                COMMA + "" + COMMA + "" +
+                COMMA + object.getCongSuat() +
+                COMMA + "";
+
+        FileProcessing.writeFile(PATH, line, FIELD_NAME);
     }
 
-    public boolean isExist(String plate) {
-        for (Car car : carList) {
-            if (car.getBienKiemSoat().equals(plate))
-                return true;
-        }
-        return false;
+    public void addATruck(Truck object) {
+        String line = object.getBienKiemSoat() +
+                COMMA + object.getTenHangSx() +
+                COMMA + object.getNamSx() +
+                COMMA + object.getChuSoHuu() +
+
+                COMMA + "" + COMMA + "" +
+                COMMA + "" +
+                COMMA + object.getTaiTrong();
+
+        FileProcessing.writeFile(PATH, line, FIELD_NAME);
     }
 
-    public List<Car> find(String brand) {
-        List<Car> list = new ArrayList<>();
-        for (Car car : scanFile()) {
-            if (car.getTenHangSx().contains(brand))
-                list.add(car);
-        }
-        return list;
-    }
-
-    public List<Car> getAll() {
-        carList = scanFile();
-        return carList;
-    }
 }

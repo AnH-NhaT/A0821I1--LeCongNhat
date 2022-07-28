@@ -16,14 +16,14 @@ public class FileProcessing {
         }
     }
 
-    public static void writeFile(String path, String line, String FIRST_LINE) {
+    public static void writeFile(String path, String line, String FIELD_NAME) {
 
         createFileIfNotExists(path);
 
         try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(path, true))) {
             File file = new File(path);
             if (file.length() == 0) {
-                bufferedWriter.write(FIRST_LINE);
+                bufferedWriter.write(FIELD_NAME);
                 bufferedWriter.newLine();
             }
             bufferedWriter.write(line);

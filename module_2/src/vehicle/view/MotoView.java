@@ -16,13 +16,8 @@ public class MotoView {
         Moto moto = new Moto();
 
         String plate;
-        do {
-            System.out.print("Biển kiểm soát: ");
-            plate = scanner.nextLine();
-            if (Validation.validateMoto(plate) && !OtherServices.isExistAll(plate)) break;
-            else if (plate.equals("")) return;
-            else System.out.println("InputNotValid! OR Duplicated!");
-        } while (true);
+        System.out.print("Biển kiểm soát: ");
+        plate = scanner.nextLine();
         moto.setBienKiemSoat(plate);
 
         OtherServices.showBrand();
@@ -55,13 +50,10 @@ public class MotoView {
 
     void update(Moto moto) {
         String plate;
-        do {
-            System.out.print("Biển kiểm soát: ");
-            plate = scanner.nextLine();
-            if (Validation.validateMoto(plate) && !OtherServices.isExistAll(plate)) break;
-            else if (plate.equals("")) return;
-            else System.out.println("InputNotValid! OR Duplicated!");
-        } while (true);
+
+        System.out.print("Biển kiểm soát: ");
+        plate = scanner.nextLine();
+
         moto.setBienKiemSoat(plate);
 
         OtherServices.showBrand();

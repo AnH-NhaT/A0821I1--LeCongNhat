@@ -13,7 +13,7 @@ public abstract class Vehicle {
         this.bienKiemSoat = bienKiemSoat;
         this.tenHangSx = tenHangSx;
         this.namSx = namSx;
-        ChuSoHuu = chuSoHuu;
+        this.ChuSoHuu = chuSoHuu;
     }
 
     public String getBienKiemSoat() {
