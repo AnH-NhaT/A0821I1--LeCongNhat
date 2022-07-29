@@ -8,5 +8,6 @@ public class Main {
 		CustomerService.insertFromCSV();
 		CustomerService.updateTicketPrice();
 		CustomerService.delete();
+		CustomerService.ShowInformation(CustomerService.getData());
 	}
 }

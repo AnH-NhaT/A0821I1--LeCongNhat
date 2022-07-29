@@ -11,14 +11,14 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-
 import example.common.ConnectDB;
-import example.validations.*;
 import example.common.FileProcessing;
 import example.models.Customer;
 import example.models.Foreigner;
 import example.models.LocalPeople;
 import example.models.OutProvincePeople;
+import example.validations.CustomerDuplicateException;
+import example.validations.DataNotMatchException;
 
 public class CustomerService {
 
@@ -43,7 +43,7 @@ public class CustomerService {
 				split = s.split(COMMA, -1);
 				listID.add(split[1]);
 				try {
-					if (Period.between(LocalDate.parse(split[3]), LocalDate.now()).getYears() <= 0) {
+					if (Period.between(LocalDate.parse(split[3]), LocalDate.now()).getDays() <= 0) {
 						throw new DataNotMatchException("BirthDate must be before current date!!!");
 					}
 					if (split[5].length() != 12) {
@@ -72,6 +72,8 @@ public class CustomerService {
 				} catch (DataNotMatchException e) {
 					System.err.println(e);
 				}
+				
+				
 			}
 			System.out.println("Successfully!");
 		} catch (SQLException e) {
@@ -108,6 +110,10 @@ public class CustomerService {
 		}
 		customerList.sort(Comparator.comparing(Customer::getTravelDate).reversed().thenComparing(Customer::getCusID));
 		return customerList;
+	}
+
+	public static void ShowInformation(List<Customer> list) {
+		list.forEach(System.out::println);
 	}
 
 	private static String getDayOfWeek(Date date) {
