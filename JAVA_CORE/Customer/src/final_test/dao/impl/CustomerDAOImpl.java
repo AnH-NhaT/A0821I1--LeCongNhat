@@ -92,18 +92,49 @@ public class CustomerDAOImpl implements CustomerDAO {
 			ResultSet resultSet = preparedStatement.executeQuery();
 			while (resultSet.next()) {
 				if (resultSet.getString(1).equals("3")) {
-					customerList.add(new Foreigner(resultSet.getInt(1), resultSet.getString(2), resultSet.getString(3),
-							resultSet.getDate(4), resultSet.getBoolean(5), resultSet.getString(6), resultSet.getInt(7),
-							resultSet.getDate(8), resultSet.getInt(9), resultSet.getString(10), resultSet.getInt(11)));
+
+					customerList.add(new Foreigner(
+							resultSet.getInt(1),
+							resultSet.getString(2),
+							resultSet.getString(3),
+							resultSet.getDate(4),
+							resultSet.getBoolean(5),
+							resultSet.getString(6),
+							resultSet.getInt(7),
+							resultSet.getDate(8),
+							resultSet.getInt(9),
+							
+							resultSet.getString(10),
+							resultSet.getInt(11)));
+					
 				} else if (resultSet.getString(1).equals("1")) {
-					customerList.add(new LocalPeople(resultSet.getInt(1), resultSet.getString(2),
-							resultSet.getString(3), resultSet.getDate(4), resultSet.getBoolean(5),
-							resultSet.getString(6), resultSet.getInt(7), resultSet.getDate(8), resultSet.getInt(9),
+					
+					customerList.add(new LocalPeople(
+							resultSet.getInt(1),
+							resultSet.getString(2),
+							resultSet.getString(3),
+							resultSet.getDate(4),
+							resultSet.getBoolean(5),
+							resultSet.getString(6),
+							resultSet.getInt(7),
+							resultSet.getDate(8),
+							resultSet.getInt(9),
+							
 							resultSet.getString(12)));
+					
 				} else if (resultSet.getString(1).equals("2")) {
-					customerList.add(new OutProvincePeople(resultSet.getInt(1), resultSet.getString(2),
-							resultSet.getString(3), resultSet.getDate(4), resultSet.getBoolean(5),
-							resultSet.getString(6), resultSet.getInt(7), resultSet.getDate(8), resultSet.getInt(9),
+					
+					customerList.add(new OutProvincePeople(
+							resultSet.getInt(1),
+							resultSet.getString(2),
+							resultSet.getString(3),
+							resultSet.getDate(4),
+							resultSet.getBoolean(5),
+							resultSet.getString(6),
+							resultSet.getInt(7),
+							resultSet.getDate(8),
+							resultSet.getInt(9),
+							
 							resultSet.getString(13)));
 				}
 			}
